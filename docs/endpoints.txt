@@ -1,0 +1,19 @@
+all service providers:
+---
+https://live-api-streetsupport.azurewebsites.net/v2/service-providers/
+
+service provider details:
+---
+https://live-api-streetsupport.azurewebsites.net/v2/service-providers/show/{provider-slug}
+
+different categories:
+---
+https://live-api-streetsupport.azurewebsites.net/v2/service-categories/
+
+standard services:
+---
+https://live-api-streetsupport.azurewebsites.net/v2/categorised-service-providers/show/{category}/long/{longitude}/lat/{latitude}
+
+timetabled services:
+---
+https://live-api-streetsupport.azurewebsites.net/v2/timetabled-service-providers/show/{category}/long/{longitude}/lat/{latitude}
