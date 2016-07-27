@@ -1,5 +1,7 @@
 import {Injectable} from "@angular/core";
 import {Http} from "@angular/http";
+import {API_BASE_URL} from "../constants";
+
 
 @Injectable()
 export class ContentService {
@@ -14,23 +16,23 @@ export class ContentService {
   }
 
   findServiceCategories() {
-    return this.handleApiCall("https://live-api-streetsupport.azurewebsites.net/v2/service-categories/");
+    return this.handleApiCall(`${API_BASE_URL}/service-categories/`);
   }
 
   findStandardServices(category, latitude, longitude) {
-    return this.handleApiCall(`https://live-api-streetsupport.azurewebsites.net/v2/categorised-service-providers/show/${category}/long/${longitude}/lat/${latitude}`);
+    return this.handleApiCall(`${API_BASE_URL}/categorised-service-providers/show/${category}/long/${longitude}/lat/${latitude}`);
   }
 
   findTimetabledServices(category, latitude, longitude) {
-    return this.handleApiCall(`https://live-api-streetsupport.azurewebsites.net/v2/timetabled-service-providers/show/${category}/long/${longitude}/lat/${latitude}`);
+    return this.handleApiCall(`${API_BASE_URL}/timetabled-service-providers/show/${category}/long/${longitude}/lat/${latitude}`);
   }
 
   findOrganisations() {
-    return this.handleApiCall("https://live-api-streetsupport.azurewebsites.net/v2/service-providers/");
+    return this.handleApiCall(`${API_BASE_URL}/service-providers/`);
   }
 
   findOrganisationBySlug(slug) {
-    return this.handleApiCall("https://live-api-streetsupport.azurewebsites.net/v2/service-providers/show/");
+    return this.handleApiCall(`${API_BASE_URL}/service-providers/show/${slug}`);
   }
 
   handleApiCall(url) {

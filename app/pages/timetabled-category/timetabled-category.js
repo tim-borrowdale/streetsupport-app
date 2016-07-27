@@ -6,10 +6,10 @@ import {OrganisationPage} from '../organisation/organisation';
 
 
 @Component({
-  templateUrl: 'build/pages/help-category/help-category.html',
+  templateUrl: 'build/pages/timetabled-category/timetabled-category.html',
   providers: [LocationProvider]
 })
-export class HelpCategoryPage {
+export class TimetabledCategoryPage {
 
   static get parameters() {
     return [[NavController], [NavParams], [LocationProvider], [ContentService]];
@@ -25,7 +25,7 @@ export class HelpCategoryPage {
   }
 
   getServicesForLocation() {
-    
+
     this.presentLoading();
 
     var self = this;
@@ -33,17 +33,10 @@ export class HelpCategoryPage {
     this.locationProvider.getLocation().then(function(location) {
       self.location = location;
     }).then(function() {
-      self.contentService.findStandardServices(self.category.key, self.location.lat, self.location.lng).subscribe(data => {
+      self.contentService.findTimetabledServices(self.category.key, self.location.lat, self.location.lng).subscribe(data => {
         self.category = data;
         self.loading.dismiss();
       });
-    });
-  }
-
-  sortAlphabetically(collection) {
-
-    return collection.sort(function(a, b) {
-      return a.name.localeCompare(b.name);
     });
   }
 

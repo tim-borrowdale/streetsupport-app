@@ -6,16 +6,16 @@
 
 <ion-content class="help-category">
   <div class="content-block content-block--centered">
-    <h1>{{category.name}}</h1>
+    <h1>{{category.categoryName}}</h1>
     <p>{{category.synopsis}}</p>
     <p></p>
   </div>
 
-  <ion-list *ngFor="let subcategory of sortAlphabetically(category.subCategories)">
+  <ion-list *ngFor="let day of category.daysServices">
     <ion-list-header>
-      {{subcategory.name}}
+      {{day.name}}
     </ion-list-header>
-    <ion-item *ngFor="let provider of subcategory.serviceProviders" (click)="itemTapped(event, provider)">
+    <ion-item *ngFor="let provider of day.serviceProviders" (click)="itemTapped(event, provider)">
       <h2>{{provider.name}}</h2>
       <p>{{provider.serviceInfo}}</p>
       <button clear item-right>View</button>

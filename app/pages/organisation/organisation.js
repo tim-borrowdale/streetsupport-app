@@ -1,22 +1,41 @@
 import {Component} from '@angular/core';
-import {NavController, NavParams} from 'ionic-angular';
+import {NavController, NavParams, Loading} from 'ionic-angular';
+import {ContentService} from '../../services/content-service';
 
-/*
-  Generated class for the OrganisationPage page.
 
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Component({
   templateUrl: 'build/pages/organisation/organisation.html',
 })
 export class OrganisationPage {
   static get parameters() {
-    return [[NavController], [NavParams]];
+    return [[NavController], [NavParams], [ContentService]];
   }
 
-  constructor(navController, navParams) {
+  constructor(navController, navParams, contentService) {
+
+    this.nav = navController;
     this.organisation = navParams.get('item');
-    console.log(navParams);
+
+    let reload = navParams.get('reload');
+
+    if (reload == true) {
+      this.presentLoading();
+
+      contentService.findOrganisationBySlug(this.organisation.key)
+      .subscribe(data => {
+        this.organisation = data;
+        this.loading.dismiss();
+      });
+    }
+  }
+
+  presentLoading() {
+
+    this.loading = Loading.create({
+      content: "Please wait...",
+      dismissOnPageChange: true
+    });
+
+    this.nav.present(this.loading);
   }
 }

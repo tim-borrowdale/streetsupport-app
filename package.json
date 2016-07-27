@@ -42,6 +42,6 @@
       "locator": "ios"
     }
   ],
-  "name": "streetsupport-app",
-  "description": "streetsupport-app: An Ionic project"
+  "name": "Street Support",
+  "description": "Supporting homeless people together"
 }

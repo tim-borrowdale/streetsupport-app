@@ -2,6 +2,7 @@ import {Component} from "@angular/core";
 import {NavController, NavParams, Loading} from 'ionic-angular';
 import {ContentService} from '../../services/content-service';
 import {HelpCategoryPage} from '../help-category/help-category';
+import {TimetabledCategoryPage} from '../timetabled-category/timetabled-category';
 
 
 @Component({
@@ -35,13 +36,19 @@ export class FindHelpPage {
         return 0;
       });
 
-      this.providers = data;
+      this.categories = data;
       this.loading.dismiss();
     });
   }
 
-  itemTapped(event, provider) {
-    this.nav.push(HelpCategoryPage, { item: provider });
+  itemTapped(event, category) {
+
+    if (category.subCategories[0].key === 'general') {
+      this.nav.push(TimetabledCategoryPage, { item: category });
+      return;
+    }
+
+    this.nav.push(HelpCategoryPage, { item: category });
   }
 
   presentLoading() {
