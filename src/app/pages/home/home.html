@@ -1,0 +1,41 @@
+<ion-navbar *navbar primary>
+  <ion-title>
+    <img src="images/logo.png" width="42" height="44" />
+  </ion-title>
+</ion-navbar>
+
+<ion-content class="home">
+  <div class="header">
+    <h1 class="header__title">Street Support</h1>
+    <p class="header__copy">Street support makes it easier for people who are homeless to get the help they need.</p>
+  </div>
+
+  <ion-list>
+    <ion-item (click)="emergencyItemTapped(event)">
+      <ion-icon name="medkit" item-left></ion-icon>
+      Emergency
+      <ion-icon name="arrow-forward" item-right></ion-icon>
+    </ion-item>
+  </ion-list>
+  <div class="content-block">
+    <p>If you want to find out what you can do to help, or read news and stories on our website.</p>
+  </div>
+  <ion-list>
+    <ion-item (click)="launch('https://streetsupport.net/give-help/')">
+      Give help
+      <ion-icon name="open" ios="ios-open-outline" item-right></ion-icon>
+    </ion-item>
+    <ion-item (click)="launch('https://streetsupport.net/give-help/donate/')">
+      Donate
+      <ion-icon name="open" ios="ios-open-outline" item-right></ion-icon>
+    </ion-item>
+    <ion-item (click)="launch('https://charter.streetsupport.net/')">
+      Manchester Homelessness Charter
+      <ion-icon name="open" ios="ios-open-outline" item-right></ion-icon>
+    </ion-item>
+    <ion-item (click)="launch('http://news.streetsupport.net/')">
+      News
+      <ion-icon name="open" ios="ios-open-outline" item-right></ion-icon>
+    </ion-item>
+  </ion-list>
+</ion-content>
