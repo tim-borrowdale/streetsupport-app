@@ -9,12 +9,14 @@
     <h1 class="header__title">Street Support</h1>
     <p class="header__copy">Street support makes it easier for people who are homeless to get the help they need.</p>
   </div>
-
   <ion-list>
     <ion-item (click)="emergencyItemTapped(event)">
       <ion-icon name="medkit" item-left></ion-icon>
       Emergency
       <ion-icon name="arrow-forward" item-right></ion-icon>
+    </ion-item>
+    <ion-item (click)="servicesItemTapped(event)">
+      Services
     </ion-item>
   </ion-list>
   <div class="content-block">

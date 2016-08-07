@@ -5,8 +5,11 @@ import {HomePage} from '../home/home';
 import {AboutPage} from '../about/about';
 
 
-@Component({ templateUrl: 'build/pages/tabs/tabs.html' })
+@Component({
+  templateUrl: 'build/pages/tabs/tabs.html'
+})
 export class TabsPage {
+
   constructor() {
     this.tab1Root = HomePage;
     this.tab2Root = FindHelpPage;

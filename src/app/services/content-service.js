@@ -20,11 +20,19 @@ export class ContentService {
   }
 
   findStandardServices(category, latitude, longitude) {
-    return this.handleApiCall(`${API_BASE_URL}/categorised-service-providers/show/${category}/long/${longitude}/lat/${latitude}`);
+    if (latitude !== undefined && longitude !== undefined) {
+      return this.handleApiCall(`${API_BASE_URL}/categorised-service-providers/show/${category}/long/${longitude}/lat/${latitude}`);
+    }
+
+    return this.handleApiCall(`${API_BASE_URL}/categorised-service-providers/show/${category}`);
   }
 
   findTimetabledServices(category, latitude, longitude) {
-    return this.handleApiCall(`${API_BASE_URL}/timetabled-service-providers/show/${category}/long/${longitude}/lat/${latitude}`);
+    if (latitude !== undefined && longitude !== undefined) {
+      return this.handleApiCall(`${API_BASE_URL}/timetabled-service-providers/show/${category}/long/${longitude}/lat/${latitude}`);
+    }
+
+    return this.handleApiCall(`${API_BASE_URL}/timetabled-service-providers/show/${category}`);
   }
 
   findOrganisations() {
