@@ -4,10 +4,34 @@
   </ion-title>
 </ion-navbar>
 
-<ion-content padding class="organisation">
-  <h1>{{organisation.name}}</h1>
-  <div class="organisation__detail">
+<ion-content class="organisation">
+  <div class="content-block">
+    <h1>{{organisation.name}}</h1>
     <h3>{{organisation.shortDescription}}</h3>
     <p>{{organisation.description}}</p>
+    <h3>Locations</h3>
+    <div *ngFor="let address of organisation.addresses">
+      <p>
+        <span *ngIf="address.street">{{address.street}}, </span>
+        <span *ngIf="address.street1">{{address.street1}}, </span>
+        <span *ngIf="address.street2">{{address.street2}}, </span>
+        <span *ngIf="address.street3">{{address.street3}}, </span>
+        <span *ngIf="address.city">{{address.city}}, </span>
+        <span *ngIf="address.postcode">{{address.postcode}}</span>
+      </p>
+      <ul class="result-detail__times-list">
+        <li *ngFor="let time of address.openingTimes">
+          <span>{{time.day}}</span>
+          <span class="result-detail__times-item">{{time.startTime}} - {{time.endTime}}</span>
+        </li>
+      </ul>
+    </div>
   </div>
+  <h2>Services Provided</h2>
+  <ion-list>
+    <ion-item *ngFor="let service of sortAlphabetically(organisation.providedServices)" (click)="itemTapped(event, service)">
+      <h2>{{service.name}}</h2>
+    </ion-item>
+  </ion-list>
+  <button (click)="presentActionSheet()">Contact {{organisation.name}}</button>
 </ion-content>

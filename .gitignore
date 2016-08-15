@@ -27,5 +27,5 @@ UserInterfaceState.xcuserstate
 
 plugins
 platforms
-node_modules
-www/build
+**/node_modules
+**/build

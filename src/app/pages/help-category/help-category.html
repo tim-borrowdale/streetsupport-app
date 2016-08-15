@@ -17,7 +17,7 @@
     </ion-list-header>
     <ion-item *ngFor="let provider of subcategory.serviceProviders" (click)="itemTapped(event, provider)">
       <h2>{{provider.name}}</h2>
-      <p>{{provider.serviceInfo}}</p>
+      <p>You must be: {{provider.tags}}</p>
       <button clear item-right>View</button>
     </ion-item>
   </ion-list>
