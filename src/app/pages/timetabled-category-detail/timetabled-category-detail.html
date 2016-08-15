@@ -19,7 +19,7 @@
         <span *ngIf="provider.address.city">{{provider.address.city}}<br></span>
         <span *ngIf="provider.address.postcode">{{provider.address.postcode}}</span>
       </p>
-      <button (click)="organisationButtonTapped()">More about {{provider.name}}</button>
+      <button (click)="organisationButtonTapped(event, provider)">More about {{provider.name}}</button>
     </div>
   </div>
 </ion-content>

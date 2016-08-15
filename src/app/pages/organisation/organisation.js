@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {NavController, NavParams, Loading, ActionSheet} from 'ionic-angular';
 import {ContentService} from '../../services/content-service';
+import {OrganisationServicePage} from '../organisation-service/organisation-service';
 
 
 @Component({
@@ -78,13 +79,14 @@ export class OrganisationPage {
   }
 
   sortAlphabetically(collection) {
-
-    return collection.sort(function(a, b) {
-      return a.name.localeCompare(b.name);
-    });
+    if (collection !== undefined) {
+      return collection.sort(function(a, b) {
+        return a.name.localeCompare(b.name);
+      });
+    }
   }
 
   itemTapped(event, service) {
-
+    this.nav.push(OrganisationServicePage, {service: service});
   }
 }

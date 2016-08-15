@@ -16,7 +16,7 @@ export class TimetabledCategoryDetailPage {
     this.provider = navParams.get('item');
   }
 
-  organisationButtonTapped(event) {
-    this.nav.parent.select(2);
+  organisationButtonTapped(event, provider) {
+    this.nav.push(OrganisationPage, {item: provider, reload: true});
   }
 }
