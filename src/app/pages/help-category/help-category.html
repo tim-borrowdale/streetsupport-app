@@ -2,13 +2,21 @@
   <ion-title>
     <img src="images/logo.png" width="42" height="44" />
   </ion-title>
+  <ion-buttons end>
+    <button (click)="changeLocation()">
+      <ion-icon isActive="{{locationEnabled}}" name="pin"></ion-icon>
+    </button>
+  </ion-buttons>
 </ion-navbar>
 
 <ion-content class="help-category">
   <div class="content-block content-block--centered">
     <h1>{{category.name}}</h1>
     <p>{{category.synopsis}}</p>
-    <p></p>
+    <p>Showing {{category.name}} within 10k of
+      <strong *ngIf="locationEnabled">your location</strong>
+      <strong *ngIf="!locationEnabled">Greater Manchester</strong>.
+    </p>
   </div>
 
   <ion-list *ngFor="let subcategory of sortAlphabetically(category.subCategories)">

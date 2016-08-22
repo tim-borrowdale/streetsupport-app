@@ -1,5 +1,5 @@
 import {Component} from "@angular/core";
-import {NavController, NavParams, Loading} from 'ionic-angular';
+import {NavController, NavParams, Loading, Storage, LocalStorage, Alert} from 'ionic-angular';
 import {LocationProvider} from '../../providers/location-provider';
 import {ContentService} from '../../services/content-service';
 import {OrganisationPage} from '../organisation/organisation';
@@ -17,31 +17,54 @@ export class HelpCategoryPage {
 
   constructor(nav, navParams, locationProvider, contentService) {
     this.nav = nav;
+    this.storage = new Storage(LocalStorage);
     this.contentService = contentService;
     this.locationProvider = locationProvider;
     this.category = navParams.get('item');
 
-    this.getServicesForLocation()
+    this.storage.get('locationEnabled').then((val) => {
+      if (val === null) {
+        this.locationEnabled = false;
+      } else {
+        this.locationEnabled = val;
+      }
+
+      this.loadServices();
+    });
   }
 
-  getServicesForLocation() {
-    
+  loadServices() {
     this.presentLoading();
 
-    var self = this;
+    if (this.locationEnabled) {
+      return this.locationProvider.getLocation().then(location => {
+        this.getServices(this.category.key, location);
+      }).catch(error => {
+        let alert = Alert.create({
+          title: 'Location Error',
+          subTitle: error,
+          buttons: ['Ok']
+        });
 
-    this.locationProvider.getLocation().then(function(location) {
-      self.location = location;
-    }).then(function() {
-      self.contentService.findStandardServices(self.category.key, self.location.lat, self.location.lng).subscribe(data => {
-        self.category = data;
-        self.loading.dismiss();
+        this.nav.present(alert);
+        this.getServices(this.category.key, {});
       });
+    }
+
+    this.getServices(this.category.key, {});
+  }
+
+  getServices(category, location) {
+    this.contentService.findStandardServices(
+      category,
+      location.latitude,
+      location.longitude).subscribe(data => {
+        this.category = data;
+        this.loading.dismiss();
     });
   }
 
   sortAlphabetically(collection) {
-
     return collection.sort(function(a, b) {
       return a.name.localeCompare(b.name);
     });
@@ -58,5 +81,11 @@ export class HelpCategoryPage {
 
   itemTapped(event, provider) {
     this.nav.push(OrganisationPage, { item: provider, reload: true });
+  }
+
+  changeLocation(event) {
+    this.locationEnabled = !this.locationEnabled;
+    this.storage.set('locationEnabled', this.locationEnabled);
+    this.loadServices();
   }
 }
