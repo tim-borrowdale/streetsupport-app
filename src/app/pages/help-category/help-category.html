@@ -12,15 +12,14 @@
 <ion-content class="help-category">
   <div class="content-block content-block--centered">
     <h1>{{category.name}}</h1>
-    <div [innerHTML]="category.synopsis"></div>
-    <p>Showing {{category.name}} within 10k of
+    <p>Showing {{category.name}} results within 10k of
       <strong *ngIf="locationEnabled">your location</strong>
       <strong *ngIf="!locationEnabled">Greater Manchester</strong>.
     </p>
   </div>
 
   <ion-list *ngFor="let subcategory of sortAlphabetically(category.subCategories)">
-    <ion-list-header>
+    <ion-list-header class="category-header">
       {{subcategory.name}}
     </ion-list-header>
     <ion-item *ngFor="let provider of subcategory.serviceProviders" (click)="itemTapped(event, provider)">
