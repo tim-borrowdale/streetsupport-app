@@ -6,17 +6,44 @@
 
 <ion-content class="emergency">
   <div class="content-block">
-    <h1>Have you recently become homeless?</h1>
-    <p>If you've just become homeless, or feel that there is a risk of that happening,
-      it's important to get the right advice as soon as possible. There is a range
-      of support available, depending on your situation&hellip;</p>
+    <h1>Emergency Help</h1>
+    <h2>Register as Homeless</h2>
+    <p>If you have just become homeless, or might do in the next 28 days, the first thing to do is apply as homeless at your local council.</p>
+    <p>If the council accepts you are homeless, they will try to find accommodation and you will be able to access other support services.</p>
+    <p>For Manchester, you can visit the town hall, or call the City Council's team on <a href="tel:01612344692">0161 234 4692</a> Mon-Fri between 9am and 4.30pm. In an emergency out of hours you can call <a href="tel:01612345001">0161 234 5001</a>.</p>
+    <p>If you would like more information about your legal rights, you can call Shelter on <a href="tel:08088004444">0808 800 4444</a> or visit their website.</p>
+    <h2>Get support into services</h2>
+    <p>If you would like support through the process, or if you don't qualify as legally homeless, it is best to go to one of the drop in centres. They can advise you and may be able to refer you into accommodation and other services.</p>
   </div>
   <ion-list>
-    <ion-item>Help via drop-ins
-      <ion-icon name="arrow-forward" item-right></ion-icon>
+    <ion-item (click)="showOrganisation('ypsf')">
+      YPSF (Under 25s)
+      <ion-icon name="open" ios="ios-open-outline" item-right></ion-icon>
     </ion-item>
-    <ion-item>Help via council
-      <ion-icon name="arrow-forward" item-right></ion-icon>
+    <ion-item (click)="showOrganisation('')">
+      Lifeshare (Under 25s)
+      <ion-icon name="open" ios="ios-open-outline" item-right></ion-icon>
+    </ion-item>
+    <ion-item (click)="showOrganisation('')">
+      Barnabus
+      <ion-icon name="open" ios="ios-open-outline" item-right></ion-icon>
+    </ion-item>
+    <ion-item (click)="showOrganisation('')">
+      The Booth Centre
+      <ion-icon name="open" ios="ios-open-outline" item-right></ion-icon>
+    </ion-item>
+    <ion-item (click)="showOrganisation('')">
+      Cornerstones
+      <ion-icon name="open" ios="ios-open-outline" item-right></ion-icon>
+    </ion-item>
+    <ion-item (click)="showOrganisation('')">
+      Mustard Tree
+      <ion-icon name="open" ios="ios-open-outline" item-right></ion-icon>
     </ion-item>
   </ion-list>
+  <div class="content-block">
+    <p>These are generally daytime services. Most emergency housing in the city cannot be accessed directly, but you can check the accommodation section of this app for more details.<p>
+    <h2>Winter emergency accommodation</h2>
+    <p>During the winter months, additional emergency accommodation is provided. Details will be communicated through the website when this is available.</p>
+  </div>
 </ion-content>

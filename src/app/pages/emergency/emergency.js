@@ -1,12 +1,8 @@
 import {Component} from '@angular/core';
 import {NavController} from 'ionic-angular';
+import {OrganisationPage} from '../organisation/organisation';
 
-/*
-  Generated class for the EmergencyPage page.
 
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Component({
   templateUrl: 'build/pages/emergency/emergency.html',
 })
@@ -17,5 +13,9 @@ export class EmergencyPage {
 
   constructor(nav) {
     this.nav = nav;
+  }
+
+  showOrganisation(key) {
+    this.nav.push(OrganisationPage, { item: {key: key}, reload: true });
   }
 }
