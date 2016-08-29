@@ -1,0 +1,33 @@
+<ion-navbar *navbar primary>
+  <ion-title>
+    <img src="images/logo.png" width="42" height="44" />
+  </ion-title>
+</ion-navbar>
+
+<ion-content class="timetable-category-detail">
+  <div class="content-block content-block--centered">
+    <h1>{{provider.name}}</h1>
+    <div class="provider-detail">
+      <h3>{{provider.serviceInfo}}</h3>
+      <p *ngIf="provider.tags.length > 0">You must be: {{provider.tags}}</p>
+    </div>
+  </div>
+  <div padding>
+    <h2>Address</h2>
+    <p class="provider-detail__address">
+      <span *ngIf="provider.address.street">{{provider.address.street}}<br></span>
+      <span *ngIf="provider.address.street1">{{provider.address.street1}}<br></span>
+      <span *ngIf="provider.address.street2">{{provider.address.street2}}<br></span>
+      <span *ngIf="provider.address.street3">{{provider.address.street3}}<br></span>
+      <span *ngIf="provider.address.city">{{provider.address.city}}<br></span>
+      <span *ngIf="provider.address.postcode">{{provider.address.postcode}}</span>
+    </p>
+    <ul class="result-detail__times-list">
+      <li *ngFor="let time of provider.openingTimes">
+        <span>{{time.day}}</span>
+        <span class="result-detail__times-item">{{time.startTime}} - {{time.endTime}}</span>
+      </li>
+    </ul>
+    <button (click)="organisationButtonTapped(event, provider)">More about {{provider.name}}</button>
+  </div>
+</ion-content>

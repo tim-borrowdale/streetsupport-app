@@ -2,8 +2,8 @@ import {Component} from "@angular/core";
 import {NavController, NavParams, Loading, Storage, LocalStorage, Alert} from 'ionic-angular';
 import {LocationProvider} from '../../providers/location-provider';
 import {ContentService} from '../../services/content-service';
-import {OrganisationPage} from '../organisation/organisation';
-
+import {HelpCategoryDetailPage} from '../help-category-detail/help-category-detail';
+import parse from 'marked';
 
 @Component({
   templateUrl: 'build/pages/help-category/help-category.html',
@@ -21,6 +21,7 @@ export class HelpCategoryPage {
     this.contentService = contentService;
     this.locationProvider = locationProvider;
     this.category = navParams.get('item');
+    this.category.synopsis = parse(this.category.synopsis);
 
     this.storage.get('locationEnabled').then((val) => {
       if (val === null) {
@@ -60,6 +61,7 @@ export class HelpCategoryPage {
       location.latitude,
       location.longitude).subscribe(data => {
         this.category = data;
+        this.category.synopsis = parse(this.category.synopsis);
         this.loading.dismiss();
     });
   }
@@ -80,7 +82,7 @@ export class HelpCategoryPage {
   }
 
   itemTapped(event, provider) {
-    this.nav.push(OrganisationPage, { item: provider, reload: true });
+    this.nav.push(HelpCategoryDetailPage, { item: provider, reload: true });
   }
 
   changeLocation(event) {

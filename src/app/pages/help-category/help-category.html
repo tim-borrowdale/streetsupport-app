@@ -12,7 +12,7 @@
 <ion-content class="help-category">
   <div class="content-block content-block--centered">
     <h1>{{category.name}}</h1>
-    <p>{{category.synopsis}}</p>
+    <div [innerHTML]="category.synopsis"></div>
     <p>Showing {{category.name}} within 10k of
       <strong *ngIf="locationEnabled">your location</strong>
       <strong *ngIf="!locationEnabled">Greater Manchester</strong>.
@@ -25,7 +25,7 @@
     </ion-list-header>
     <ion-item *ngFor="let provider of subcategory.serviceProviders" (click)="itemTapped(event, provider)">
       <h2>{{provider.name}}</h2>
-      <p>You must be: {{provider.tags}}</p>
+      <p *ngIf="provider.tags.length > 0">You must be: {{provider.tags}}</p>
       <button clear item-right>View</button>
     </ion-item>
   </ion-list>

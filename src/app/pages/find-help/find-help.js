@@ -10,7 +10,6 @@ import {TimetabledCategoryPage} from '../timetabled-category/timetabled-category
 })
 
 export class FindHelpPage {
-  // provide Angular with metadata about things it should inject in the constructor
   static get parameters() {
     return [[NavController], [NavParams], [ContentService]];
   }
@@ -43,7 +42,7 @@ export class FindHelpPage {
 
   itemTapped(event, category) {
 
-    if (category.subCategories[0].key === 'general') {
+    if (category.key === 'dropin' || category.key === 'meals') {
       this.nav.push(TimetabledCategoryPage, { item: category });
       return;
     }
