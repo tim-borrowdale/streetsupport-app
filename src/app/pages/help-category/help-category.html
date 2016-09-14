@@ -10,7 +10,7 @@
 </ion-navbar>
 
 <ion-content class="help-category">
-  <div class="content-block content-block--centered">
+  <div class="header-block header-block--centered">
     <h1>{{category.name}}</h1>
     <p>Showing {{category.name}} results within 10k of
       <strong *ngIf="locationEnabled">your location</strong>
@@ -19,13 +19,13 @@
   </div>
 
   <ion-list *ngFor="let subcategory of sortAlphabetically(category.subCategories)">
-    <ion-list-header class="category-header">
+    <ion-list-header class="category__header">
       {{subcategory.name}}
     </ion-list-header>
-    <ion-item *ngFor="let provider of subcategory.serviceProviders" (click)="itemTapped(event, provider)">
-      <h2>{{provider.name}}</h2>
+    <ion-item class="category__item" *ngFor="let provider of subcategory.serviceProviders" (click)="itemTapped(event, provider)">
+      <h3 [innerHTML]="provider.name"></h3>
       <p *ngIf="provider.tags.length > 0">You must be: {{provider.tags}}</p>
-      <button clear item-right>View</button>
+      <ion-icon name="arrow-forward" item-right></ion-icon>
     </ion-item>
   </ion-list>
 </ion-content>

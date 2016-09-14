@@ -39,17 +39,34 @@ h1, h2, h3 {
 h1, h2 {
   font-family: 'museo_sans_rounded500', sans-serif;
   font-weight: 500;
-  color: rgb(88, 75, 127);
+  color: color($colors, accent);
 }
 
 h1 {
-  font-size: 30px;
-  color: color($colors, accent);
+  font-size: 28px;
+}
+
+h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
 }
 
 h3 {
   font-size:18px;
   font-weight: bold;
+}
+
+dl {
+  margin: 0;
+
+  dt {
+    display: inline-block;
+    width: 30%;
+  }
+
+  dd {
+    display: inline-block;
+  }
 }
 
 ion-icon[item-right] {
@@ -66,6 +83,22 @@ ion-content {
   color:#333;
 }
 
+.cta-block {
+  margin:0 20px 30px;
+}
+
+.button-default {
+  background-color: rgb(222, 192, 49);
+  color: #333;
+  font-weight: bold;
+  box-shadow: 0 3px 0 0 #b37100;
+  width: 100%;
+}
+
+.button-default.activated {
+  background-color: #b37100;
+}
+
 .toolbar-title > img {
   vertical-align: middle;
 }
@@ -80,15 +113,15 @@ ion-content {
   padding-right:0;
 }
 
+.wrapper {
+  margin:0 10px;
+}
+
 .header {
   background: transparent url('../../images/header_bg.png') repeat 0 0;
   background-size: 60%;
   text-align: center;
   padding: 40px 20px;
-}
-
-.wrapper {
-  margin:0 10px;
 }
 
 .header__title {
@@ -102,17 +135,69 @@ ion-content {
   margin-bottom:0;
 }
 
-.content-block {
-  padding: 20px 16px;
+.header-block {
+  padding: 30px 16px 20px;
 }
-.content-block--centered {
+.header-block--centered {
   text-align: center;
 }
 
-.category-header {
-  color:#5a497f;
-  font-size: 1.4rem;
+.header-block__heading {
+  margin-bottom:5px;
+}
+
+.header-block__sub-heading {
+  font-size: 16px;
   font-weight: bold;
+  margin-bottom:30px;
+}
+
+.content-block {
+  background-color: #fff;
+  border-top: solid 1px #A1A2A4;
+  border-bottom: solid 1px #A1A2A4;
+  margin-bottom: 20px;
+  padding: 20px;
+
+  p {
+    margin-bottom: 0;
+  }
+
+  ul {
+    list-style: none;
+    padding-left: 0;
+  }
+}
+
+.category__header {
+  color: #5a497f;
+  font-size: 1.8rem;
+  font-weight: bold;
+  text-transform: capitalize;
+  letter-spacing: normal;
+}
+
+.category__item {
+
+  h2 {
+    margin: 0;
+  }
+
+  h3 {
+    margin: 0 0 2px 0;
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+
+  p {
+    font-size: 1.1rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  ion-label {
+    margin: 5px 8px 5px 0;
+  }
 }
 
 .external-links {

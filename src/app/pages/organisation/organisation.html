@@ -5,12 +5,14 @@
 </ion-navbar>
 
 <ion-content class="organisation">
-  <div class="content-block">
-    <h1>{{organisation.name}}</h1>
-    <h3>{{organisation.shortDescription}}</h3>
+  <div class="header-block">
+    <h1 class="header-block__heading">{{organisation.name}}</h1>
+    <p class="header-block__sub-heading">{{organisation.shortDescription}}</p>
     <p>{{organisation.description}}</p>
-    <h3>Locations</h3>
-    <div *ngFor="let address of organisation.addresses">
+  </div>
+  <div *ngFor="let address of organisation.addresses">
+    <div class="content-block">
+      <h2>Location</h2>
       <p>
         <span *ngIf="address.street">{{address.street}}, </span>
         <span *ngIf="address.street1">{{address.street1}}, </span>
@@ -19,19 +21,25 @@
         <span *ngIf="address.city">{{address.city}}, </span>
         <span *ngIf="address.postcode">{{address.postcode}}</span>
       </p>
-      <ul class="result-detail__times-list">
-        <li *ngFor="let time of address.openingTimes">
-          <span>{{time.day}}</span>
-          <span class="result-detail__times-item">{{time.startTime}} - {{time.endTime}}</span>
-        </li>
-      </ul>
+    </div>
+    <div class="content-block">
+      <h2>Opening Times</h2>
+      <dl class="result-detail__times-list" *ngFor="let time of address.openingTimes">
+        <dt>{{time.day}}</dt>
+        <dd class="result-detail__times-item">{{time.startTime}} - {{time.endTime}}</dd>
+      </dl>
     </div>
   </div>
-  <h2>Services Provided</h2>
+  <div class="wrapper">
+    <h2>Services Provided</h2>
+  </div>
   <ion-list>
     <ion-item no-padding *ngFor="let service of sortAlphabetically(organisation.providedServices)" (click)="itemTapped(event, service)">
-      <h2>{{service.name}}</h2>
+      {{service.name}}
+      <ion-icon name="arrow-forward" item-right></ion-icon>
     </ion-item>
   </ion-list>
-  <button (click)="presentActionSheet()">Contact {{organisation.name}}</button>
+  <div class="cta-block">
+    <button (click)="presentActionSheet()">Contact {{organisation.name}}</button>
+  </div>
 </ion-content>

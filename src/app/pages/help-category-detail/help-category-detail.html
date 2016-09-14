@@ -5,29 +5,30 @@
 </ion-navbar>
 
 <ion-content class="timetable-category-detail">
-  <div class="content-block content-block--centered">
-    <h1>{{provider.name}}</h1>
-    <div class="provider-detail">
-      <h3>{{provider.serviceInfo}}</h3>
-      <p *ngIf="provider.tags.length > 0">You must be: {{provider.tags}}</p>
-    </div>
+  <div class="header-block">
+    <h1 class="header-block__heading">{{provider.name}}</h1>
+    <p>{{provider.serviceInfo}}</p>
+    <p *ngIf="provider.tags.length > 0">You must be: {{provider.tags}}</p>
   </div>
-  <div padding>
-    <h2>Address</h2>
-    <p class="provider-detail__address">
-      <span *ngIf="provider.address.street">{{provider.address.street}}<br></span>
-      <span *ngIf="provider.address.street1">{{provider.address.street1}}<br></span>
-      <span *ngIf="provider.address.street2">{{provider.address.street2}}<br></span>
-      <span *ngIf="provider.address.street3">{{provider.address.street3}}<br></span>
-      <span *ngIf="provider.address.city">{{provider.address.city}}<br></span>
+  <div class="content-block">
+    <h2>Location</h2>
+    <p>
+      <span *ngIf="provider.address.street">{{provider.address.street}}, </span>
+      <span *ngIf="provider.address.street1">{{provider.address.street1}}, </span>
+      <span *ngIf="provider.address.street2">{{provider.address.street2}}, </span>
+      <span *ngIf="provider.address.street3">{{provider.address.street3}}, </span>
+      <span *ngIf="provider.address.city">{{provider.address.city}}, </span>
       <span *ngIf="provider.address.postcode">{{provider.address.postcode}}</span>
     </p>
-    <ul class="result-detail__times-list">
-      <li *ngFor="let time of provider.openingTimes">
-        <span>{{time.day}}</span>
-        <span class="result-detail__times-item">{{time.startTime}} - {{time.endTime}}</span>
-      </li>
-    </ul>
+  </div>
+  <div class="content-block">
+    <h2>Opening Times</h2>
+    <dl class="result-detail__times-list" *ngFor="let time of provider.openingTimes">
+      <dt>{{time.day}}</dt>
+      <dd class="result-detail__times-item">{{time.startTime}} - {{time.endTime}}</dd>
+    </dl>
+  </div>
+  <div class="cta-block">
     <button (click)="organisationButtonTapped(event, provider)">More about {{provider.name}}</button>
   </div>
 </ion-content>
