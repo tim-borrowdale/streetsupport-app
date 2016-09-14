@@ -23,41 +23,83 @@ body {
   font-size: 16px;
   font-family: 'museo_sans_rounded300', sans-serif;
   line-height: 1.5;
+  color: #333;
 }
 
 p {
   margin:0 0 20px;
+  color:#333;
 }
 
 h1, h2, h3 {
-  font-family: 'museo_sans_rounded500', sans-serif;
-  font-weight: 500;
   margin: 0 0 20px 0;
   line-height: 1.3;
 }
 
+h1, h2 {
+  font-family: 'museo_sans_rounded500', sans-serif;
+  font-weight: 500;
+  color: rgb(88, 75, 127);
+}
+
 h1 {
-  font-size: 35px;
+  font-size: 30px;
   color: color($colors, accent);
-  text-align: center;
 }
 
 h3 {
-  font-size:19px;
+  font-size:18px;
+  font-weight: bold;
+}
+
+ion-icon[item-right] {
+  margin: 0;
+  width: 44px;
+  text-align: center;
+  height: 44px;
+  padding-top: 10px;
+  background-image: linear-gradient(rgb(222, 192, 49), rgb(222, 171, 46));
+}
+
+ion-content {
+  background-color: rgb(238, 239, 240);
+  color:#333;
+}
+
+.toolbar-title > img {
+  vertical-align: middle;
+}
+
+.item {
+  border-top:0;
+  border-bottom: 1px solid #c8c7cc;
+}
+
+.item .item-inner {
+  border: none;
+  padding-right:0;
 }
 
 .header {
   background: transparent url('../../images/header_bg.png') repeat 0 0;
+  background-size: 60%;
   text-align: center;
-  padding: 30px 20px;
+  padding: 40px 20px;
+}
+
+.wrapper {
+  margin:0 10px;
 }
 
 .header__title {
   color: color($colors, body);
+  margin-bottom:5px;
 }
 
 .header__copy {
   color: color($colors, secondary);
+  font-weight: bold;
+  margin-bottom:0;
 }
 
 .content-block {
@@ -71,6 +113,26 @@ h3 {
   color:#5a497f;
   font-size: 1.4rem;
   font-weight: bold;
+}
+
+.external-links {
+  border:none;
+}
+
+.external-links > .item {
+  border-top: 2px green solid;
+  border-bottom: none;
+  width: auto;
+  margin: 0 10px 10px;
+  font-size: 1.4rem;
+}
+
+.external-links > .item strong {
+  color: rgb(46, 156, 123);
+}
+
+.external-links > .item:first-child {
+  border-top: 2px green solid;
 }
 
 @import "../pages/find-help/find-help";
