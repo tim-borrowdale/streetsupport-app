@@ -57,17 +57,17 @@ export class OrganisationPage {
         },{
           text: 'Website',
           handler: () => {
-            cordova.InAppBrowser.open(this.organisation.website, "_blank", "location=no,toolbarposition=top");
+            cordova.InAppBrowser.open(this.organisation.website, "_system", "location=no");
           }
         },{
           text: 'Facebook',
           handler: () => {
-            cordova.InAppBrowser.open(this.organisation.facebook, "_blank", "location=no,toolbarposition=top");
+            cordova.InAppBrowser.open(this.organisation.facebook, "_system", "location=no");
           }
         },{
           text: 'Twitter',
           handler: () => {
-            cordova.InAppBrowser.open(this.organisation.twitter, "_blank", "location=no,toolbarposition=top");
+            cordova.InAppBrowser.open(this.organisation.twitter, "_system", "location=no");
           }
         },{
           text: 'Cancel',

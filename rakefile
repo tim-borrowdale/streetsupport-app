@@ -5,28 +5,23 @@ require 'bundler/setup'
 
 task :default => :test
 
-task :test do
+task :deploy_ios do
   Dir.chdir('src') do
-    sh %{fastlane quality}
+    sh %{ionic build ios --release}
   end
 end
 
-task :build do
-  Dir.chdir('src') do
-    sh %{fastlane build}
-  end
-end
-
-task :deploy_uat do
-  Dir.chdir('src') do
-    sh %{fastlane uat}
-  end
-end
-
-task :deploy_prod do
+task :deploy_android do
    Dir.chdir('src') do
-    sh %{fastlane production}
+    sh %{cordova build android --release}
+  end
+
+  Dir.chdir('deploy') do
+    mkdir_p "./build"
+    rm_r "build/StreetSupportApp.apk" rescue nil
+    sh %{mv ../src/platforms/android/build/outputs/apk/android-release-unsigned.apk build/streetsupport-release-unsigned.apk}
+    sh %{jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore assets/StreetSupportApp.keystore build/streetsupport-release-unsigned.apk StreetSupportApp}
+    sh %{~/Library/Android/sdk/build-tools/24.0.0/zipalign -v 4 build/streetsupport-release-unsigned.apk build/StreetSupportApp.apk}
+    rm_r "build/streetsupport-release-unsigned.apk" rescue nil
   end
 end
-
-

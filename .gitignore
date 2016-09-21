@@ -25,6 +25,12 @@ $RECYCLE.BIN/
 Thumbs.db
 UserInterfaceState.xcuserstate
 
+# Dependencies
+.bundle
+gems
+bower_components
+node_modules
+
 plugins
 platforms
 **/node_modules

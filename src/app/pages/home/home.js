@@ -18,7 +18,7 @@ export class HomePage {
 
   launch(url) {
     this.platform.ready().then(() => {
-      cordova.InAppBrowser.open(url, "_blank", "location=no,toolbarposition=top");
+      cordova.InAppBrowser.open(url, "_system", "location=no");
     });
   }
 

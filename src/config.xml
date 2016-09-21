@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<widget id="net.streetsupport.findhelpapp" version="0.8.4" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="net.streetsupport.findhelpapp" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
   <name>Street Support</name>
   <description>Supporting homeless people together</description>
   <author email="tony.mcbeth@gmail.com" href="http://tonymcbeth.me/">Tony McBeth</author>
