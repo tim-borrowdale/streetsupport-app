@@ -11,10 +11,13 @@ task :deploy_ios do
   end
 end
 
-task :deploy_android do
-   Dir.chdir('src') do
-    sh %{cordova build android --release}
-  end
+task :build_android do
+  Dir.chdir('src') do
+   sh %{cordova build android --release}
+ end
+end
+
+task :deploy_android => :build_android do
 
   Dir.chdir('deploy') do
     mkdir_p "./build"

@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<widget id="net.streetsupport.findhelpapp" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="net.streetsupport.findhelpapp" version="1.0.6" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
   <name>Street Support</name>
   <description>Supporting homeless people together</description>
   <author email="tony.mcbeth@gmail.com" href="http://tonymcbeth.me/">Tony McBeth</author>
   <content src="index.html"/>
   <access origin="*"/>
+  <allow-navigation href="*" />
   <allow-intent href="http://*/*"/>
   <allow-intent href="https://*/*"/>
   <allow-intent href="tel:*"/>
@@ -69,17 +70,19 @@
   <preference name="DisallowOverscroll" value="true"/>
   <preference name="android-minSdkVersion" value="16"/>
   <preference name="BackupWebStorage" value="none"/>
-  <preference name="SplashScreenDelay" value="2000"/>
-  <preference name="FadeSplashScreenDuration" value="1000"/>
+  <preference name="SplashScreenDelay" value="0"/>
+  <preference name="FadeSplashScreen" value="false"/>
+  <preference name="FadeSplashScreenDuration" value="0"/>
+  <preference name="SplashScreenBackgroundColor" value="0xFFFFFFFF"/>
   <preference name="SplashScreen" value="screen"/>
   <feature name="StatusBar">
     <param name="ios-package" onload="true" value="CDVStatusBar"/>
   </feature>
-  <icon src="resources/android/icon/drawable-xhdpi-icon.png"/>
-  <plugin name="cordova-plugin-whitelist" spec="~1.2.2"/>
-  <plugin name="cordova-plugin-device" spec="~1.1.2"/>
-  <plugin name="cordova-plugin-splashscreen" spec="~3.2.2"/>
-  <plugin name="cordova-plugin-statusbar" spec="~2.1.3"/>
-  <plugin name="cordova-plugin-console" spec="~1.0.3"/>
+  <plugin name="cordova-plugin-device" spec="~1.1.3"/>
+  <plugin name="cordova-plugin-console" spec="~1.0.4"/>
+  <plugin name="cordova-plugin-whitelist" spec="~1.3.0"/>
+  <plugin name="cordova-plugin-splashscreen" spec="~4.0.0"/>
+  <plugin name="cordova-plugin-statusbar" spec="~2.2.0"/>
   <plugin name="ionic-plugin-keyboard" spec="~2.2.1"/>
+  <icon src="resources/android/icon/drawable-xhdpi-icon.png"/>
 </widget>

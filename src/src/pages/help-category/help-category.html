@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>
+      <img src="assets/images/logo.png" width="32" height="34" />
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="changeLocation()">
+        <ion-icon isActive="{{locationEnabled}}" name="pin"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="help-category">
+  <div class="header-block header-block--centered">
+    <h1 [innerHTML]="category.name"></h1>
+    <p>Showing results within 10k of
+      <strong *ngIf="locationEnabled">your location</strong>
+      <strong *ngIf="!locationEnabled">Greater Manchester</strong>.
+    </p>
+  </div>
+
+  <ion-list *ngFor="let subcategory of sortAlphabetically(category.subCategories)">
+    <ion-list-header class="category__header">
+      {{subcategory.name}}
+    </ion-list-header>
+    <ion-item class="category__item" *ngFor="let provider of subcategory.serviceProviders" (click)="itemTapped(provider)">
+      <h3 [innerHTML]="provider.name"></h3>
+      <p *ngIf="provider.tags.length > 0">You must be: {{provider.tags}}</p>
+      <ion-icon name="arrow-forward" item-right></ion-icon>
+    </ion-item>
+  </ion-list>
+</ion-content>
