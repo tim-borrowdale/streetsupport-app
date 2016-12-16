@@ -1,0 +1,95 @@
+fastlane_version "2.0.3"
+require 'yaml'
+require 'fileutils'
+
+PROJECT_NAME = ENV['PROJECT_NAME']
+FABRIC_API_KEY = ENV['FABRIC_API_KEY']
+FABRIC_SECRET = ENV['FABRIC_BUILD_SECRET']
+GROUPS = ENV['FABRIC_GROUP_ALIASES']
+BUILD_NUMBER = ENV['BUILD_NUMBER']
+
+default_platform :ios
+
+platform :ios do
+  desc "Generate IPA file"
+  lane :prepare do
+
+		unlock_keychain(path: "login.keychain", password: ENV["KEYCHAIN_PASSWORD"])
+
+		cert
+		sigh(adhoc: true)
+
+		# use the UDID of the newly created provisioning profile
+		ENV["PROFILE_UDID"] = Actions.lane_context[Actions::SharedValues::SIGH_UDID]
+
+		build_number = ENV["BUILD_NUMBER"].to_i
+
+    increment_build_number(
+			xcodeproj: "../#{PROJECT_NAME}/platforms/ios/#{PROJECT_NAME}.xcodeproj",
+      build_number: build_number
+    )
+
+    # Set version number to the one at the top of the CHANGELOG
+    changelog = YAML.load_file('../../CHANGELOG.yml')
+    version_number = changelog['upcoming']['version']
+
+    # Increment to the changelog version number
+    increment_version_number(
+		xcodeproj: "../#{PROJECT_NAME}/platforms/ios/#{PROJECT_NAME}.xcodeproj",
+      version_number: version_number
+    )
+
+    gym(
+			workspace:"../#{PROJECT_NAME}/platforms/ios/#{PROJECT_NAME}.xcworkspace",
+			scheme:"#{PROJECT_NAME}"
+		)
+
+		FileUtils.mkdir_p("../archive")
+		FileUtils.mv("../#{PROJECT_NAME}.ipa", "../archive/#{PROJECT_NAME}.ipa")
+
+  end
+
+	desc "Submit a new iOS Beta Build to Crashlytics"
+	lane :distribute do
+
+		# Set version number to the one at the top of the CHANGELOG
+    changelog = YAML.load_file('../CHANGELOG.yml')
+    version_number = changelog['upcoming']['version']
+
+    # Generate release notes from CHANGELOG
+    release_notes = changelog['upcoming']['notes'].map{ |note| note.prepend '- ' }.join("\n")
+
+    out_file = File.new("../deploy/archive/release_notes.txt", "w+")
+    out_file.puts(release_notes)
+    out_file.close
+
+    crashlytics(
+      api_token: FABRIC_API_KEY,
+      build_secret: FABRIC_SECRET,
+      ipa_path: "archive/#{PROJECT_NAME}.ipa",
+      groups: GROUPS,
+      notes_path: 'deploy/archive/release_notes.txt'
+    )
+	end
+end
+
+platform :android do
+	desc "Submit a new Android Beta Build to Crashlytics"
+	lane :distribute do
+
+		changelog = YAML.load_file('../CHANGELOG.yml')
+		release_notes = changelog['upcoming']['notes'].map{ |note| note.prepend '- ' }.join("\n")
+
+		out_file = File.new("../deploy/archive/release_notes.txt", "w+")
+		out_file.puts(release_notes)
+		out_file.close
+
+		crashlytics(
+				api_token: FABRIC_API_KEY,
+				build_secret: FABRIC_SECRET,
+			groups: GROUPS,
+			notes_path: 'deploy/archive/release_notes.txt',
+			apk_path: "deploy/archive/#{PROJECT_NAME}.apk"
+		)
+	end
+end

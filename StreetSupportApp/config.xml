@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <widget id="net.streetsupport.findhelpapp" version="1.0.6" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-  <name>Street Support</name>
+  <name>StreetSupportApp</name>
   <description>Supporting homeless people together</description>
   <author email="tony.mcbeth@gmail.com" href="http://tonymcbeth.me/">Tony McBeth</author>
   <content src="index.html"/>
@@ -75,6 +75,7 @@
   <preference name="FadeSplashScreenDuration" value="0"/>
   <preference name="SplashScreenBackgroundColor" value="0xFFFFFFFF"/>
   <preference name="SplashScreen" value="screen"/>
+  <preference name="Orientation" value="portrait"/>
   <feature name="StatusBar">
     <param name="ios-package" onload="true" value="CDVStatusBar"/>
   </feature>

@@ -40,15 +40,14 @@
     "cordova.plugins.diagnostic"
   ],
   "cordovaPlatforms": [
-    "ios",
     {
       "platform": "ios",
-      "version": "",
+      "version": "4.1.1",
       "locator": "ios"
     },
     {
       "platform": "android",
-      "version": "",
+      "version": "6.0.0",
       "locator": "android"
     }
   ],

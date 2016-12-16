@@ -1,30 +1,51 @@
 require 'rubygems'
 require 'bundler/setup'
+require 'fastlane'
+
+PROJECT_NAME = ENV['PROJECT_NAME']
+KEYSTORE_PASS = ENV['KEYSTORE_PASS']
 
 ## Tasks ##
 
-task :default => :test
+task :default => [:setup, :build_ios, :build_android]
+task :deploy => [:setup, :build_ios, :build_android, :deploy_uat]
 
-task :deploy_ios do
-  Dir.chdir('src') do
-    sh %{ionic build ios --release}
-  end
+task :setup do
+	Dir.chdir("#{PROJECT_NAME}") do
+		sh %{npm install}
+		sh %{ionic state restore}
+		sh %{ionic build}
+	end
+end
+
+task :build_ios do
+	Dir.chdir("#{PROJECT_NAME}") do
+		sh %{ionic build ios --release}
+	end
+	Dir.chdir("deploy") do
+		sh %{bundle exec fastlane ios prepare}
+	end
 end
 
 task :build_android do
-  Dir.chdir('src') do
-   sh %{cordova build android --release}
- end
+	Dir.chdir("#{PROJECT_NAME}") do
+		sh %{cordova build --release android}
+	end
+
+	mkdir_p "archive"
+
+	Dir.chdir('deploy') do
+		rm_r "archive/#{PROJECT_NAME}.apk" rescue nil
+		sh %{mv ../#{PROJECT_NAME}/platforms/android/build/outputs/apk/android-release-unsigned.apk archive/#{PROJECT_NAME}-release-unsigned.apk}
+		sh %{jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore tools/#{PROJECT_NAME}.keystore archive/#{PROJECT_NAME}-release-unsigned.apk #{PROJECT_NAME} -keypass #{KEYSTORE_PASS} -storepass #{KEYSTORE_PASS}}
+		sh %{tools/zipalign -v 4 archive/#{PROJECT_NAME}-release-unsigned.apk archive/#{PROJECT_NAME}.apk}
+		rm_r "archive/#{PROJECT_NAME}-release-unsigned.apk" rescue nil
+	end
 end
 
-task :deploy_android => :build_android do
-
-  Dir.chdir('deploy') do
-    mkdir_p "./build"
-    rm_r "build/StreetSupportApp.apk" rescue nil
-    sh %{mv ../src/platforms/android/build/outputs/apk/android-release-unsigned.apk build/streetsupport-release-unsigned.apk}
-    sh %{jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore assets/StreetSupportApp.keystore build/streetsupport-release-unsigned.apk StreetSupportApp}
-    sh %{~/Library/Android/sdk/build-tools/24.0.0/zipalign -v 4 build/streetsupport-release-unsigned.apk build/StreetSupportApp.apk}
-    rm_r "build/streetsupport-release-unsigned.apk" rescue nil
-  end
+task :deploy_uat do
+	Dir.chdir('deploy') do
+		sh %{bundle exec fastlane ios distribute}
+  	sh %{bundle exec fastlane android distribute}
+	end
 end

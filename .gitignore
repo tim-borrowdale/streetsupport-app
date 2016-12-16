@@ -35,3 +35,8 @@ plugins
 platforms
 **/node_modules
 **/build
+archive
+*.sh
+*.zip
+deploy/*.cer
+deploy/*.mobileprovision
