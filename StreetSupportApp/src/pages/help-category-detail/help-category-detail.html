@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>
+      <img src="assets/images/logo.png" width="32" height="34" />
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="timetable-category-detail">
+  <div class="header-block">
+    <h1 class="header-block__heading" [innerHTML]="provider.name"></h1>
+    <p [innerHTML]="provider.serviceInfo"></p>
+    <p *ngIf="provider.tags.length > 0">You must be: {{provider.tags}}</p>
+  </div>
+  <div class="content-block">
+    <h2>Location</h2>
+    <p>
+      <span *ngIf="provider.address.street" [innerHTML]="provider.address.street">, </span>
+      <span *ngIf="provider.address.street1" [innerHTML]="provider.address.street1">, </span>
+      <span *ngIf="provider.address.street2" [innerHTML]="provider.address.street2">, </span>
+      <span *ngIf="provider.address.street3" [innerHTML]="provider.address.street3">, </span>
+      <span *ngIf="provider.address.city" [innerHTML]="provider.address.city">, </span>
+      <span *ngIf="provider.address.postcode" [innerHTML]="provider.address.postcode"></span>
+    </p>
+  </div>
+  <div class="content-block">
+    <h2>Opening Times</h2>
+    <dl class="result-detail__times-list" *ngFor="let time of provider.openingTimes">
+      <dt>{{time.day}}</dt>
+      <dd class="result-detail__times-item">{{time.startTime}} - {{time.endTime}}</dd>
+    </dl>
+  </div>
+  <div class="cta-block">
+    <button ion-button (click)="organisationButtonTapped(provider)">More about {{provider.name}}</button>
+  </div>
+</ion-content>
