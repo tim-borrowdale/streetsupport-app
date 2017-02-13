@@ -53,22 +53,23 @@ platform :ios do
 	lane :distribute do
 
 		# Set version number to the one at the top of the CHANGELOG
-    changelog = YAML.load_file('../CHANGELOG.yml')
+    changelog = YAML.load_file('../../CHANGELOG.yml')
     version_number = changelog['upcoming']['version']
 
     # Generate release notes from CHANGELOG
     release_notes = changelog['upcoming']['notes'].map{ |note| note.prepend '- ' }.join("\n")
 
-    out_file = File.new("../deploy/archive/release_notes.txt", "w+")
+    out_file = File.new("release_notes.txt", "w+")
     out_file.puts(release_notes)
     out_file.close
 
     crashlytics(
+      crashlytics_path: "../#{PROJECT_NAME}/platforms/ios/#{PROJECT_NAME}/Plugins/cordova-fabric-plugin/Crashlytics.framework",
       api_token: FABRIC_API_KEY,
       build_secret: FABRIC_SECRET,
       ipa_path: "archive/#{PROJECT_NAME}.ipa",
       groups: GROUPS,
-      notes_path: 'deploy/archive/release_notes.txt'
+      notes_path: 'archive/release_notes.txt'
     )
 	end
 end
@@ -77,19 +78,19 @@ platform :android do
 	desc "Submit a new Android Beta Build to Crashlytics"
 	lane :distribute do
 
-		changelog = YAML.load_file('../CHANGELOG.yml')
+		changelog = YAML.load_file('../../CHANGELOG.yml')
 		release_notes = changelog['upcoming']['notes'].map{ |note| note.prepend '- ' }.join("\n")
 
-		out_file = File.new("../deploy/archive/release_notes.txt", "w+")
+		out_file = File.new("../archive/release_notes.txt", "w+")
 		out_file.puts(release_notes)
 		out_file.close
 
 		crashlytics(
-				api_token: FABRIC_API_KEY,
-				build_secret: FABRIC_SECRET,
+			api_token: FABRIC_API_KEY,
+			build_secret: FABRIC_SECRET,
 			groups: GROUPS,
-			notes_path: 'deploy/archive/release_notes.txt',
-			apk_path: "deploy/archive/#{PROJECT_NAME}.apk"
+			notes_path: 'archive/release_notes.txt',
+			apk_path: "archive/#{PROJECT_NAME}.apk"
 		)
 	end
 end

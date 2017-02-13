@@ -2,43 +2,20 @@
 <testsuites>
   <testsuite name="fastlane.lanes">
     
+    
+    
       
-      <testcase classname="fastlane.lanes" name="0: Verifying required fastlane version" time="0.00044">
+      <testcase classname="fastlane.lanes" name="0: Verifying required fastlane version" time="0.000396">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="1: default_platform" time="0.000734">
+      <testcase classname="fastlane.lanes" name="1: default_platform" time="0.000545">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="2: unlock_keychain" time="0.134064">
-        
-      </testcase>
-    
-      
-      <testcase classname="fastlane.lanes" name="3: cert" time="92.482064">
-        
-      </testcase>
-    
-      
-      <testcase classname="fastlane.lanes" name="4: sigh" time="53.428046">
-        
-      </testcase>
-    
-      
-      <testcase classname="fastlane.lanes" name="5: increment_build_number" time="0.834434">
-        
-      </testcase>
-    
-      
-      <testcase classname="fastlane.lanes" name="6: increment_version_number" time="0.796826">
-        
-      </testcase>
-    
-      
-      <testcase classname="fastlane.lanes" name="7: gym" time="96.665032">
+      <testcase classname="fastlane.lanes" name="2: crashlytics" time="9.025163">
         
       </testcase>
     
