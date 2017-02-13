@@ -1,6 +1,7 @@
 import {Component} from "@angular/core";
-import {NavController, NavParams, Loading, LoadingController} from 'ionic-angular';
-import {ContentService} from '../../services/content-service';
+import {NavController, Loading, LoadingController} from 'ionic-angular';
+import {ContentProvider} from '../../providers/content-provider';
+import {LocationProvider} from '../../providers/location-provider';
 import {OrganisationPage} from '../organisation/organisation';
 
 
@@ -9,39 +10,46 @@ import {OrganisationPage} from '../organisation/organisation';
 })
 export class OrganisationListPage {
 
-  public selectedItem: any;
   public providers: any;
   public loader: Loading;
+  public cityName: string;
 
   constructor(
     public nav: NavController,
-    public navParams: NavParams,
     public loadingCtrl: LoadingController,
-    public contentService: ContentService) {
+    public contentProvider: ContentProvider,
+    public locationProvider: LocationProvider) { }
 
-      this.selectedItem = navParams.get('item');
+  ionViewWillEnter() {
+    this.locationProvider.getCurrentCity().then(city => {
+      if (this.cityName !== city.name) {
+        this.cityName = city.name;
+        this.loadProviders(city.id);
+      }
+    });
   }
 
-  ngOnInit() {
+  itemTapped(event, provider) {
+    this.nav.push(OrganisationPage, { item: provider.key });
+  }
+
+  locationChanged(city) {
+    this.cityName = city.name;
+    this.loadProviders(city.id);
+  }
+
+
+  private loadProviders(cityId) {
     this.presentLoading();
 
-    this.contentService.findOrganisations().then(data => {
+    this.contentProvider.findOrganisations(cityId).then(data => {
       this.providers = data;
       this.loader.dismiss();
     });
   }
 
-  itemTapped(event, provider) {
-    this.nav.push(OrganisationPage, { item: provider });
-  }
-
-  presentLoading() {
-
-    this.loader = this.loadingCtrl.create({
-      content: "Please wait...",
-      dismissOnPageChange: true
-    });
-
+  private presentLoading() {
+    this.loader = this.loadingCtrl.create({ content: "Please wait..." });
     this.loader.present();
   }
 }

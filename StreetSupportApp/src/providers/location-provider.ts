@@ -1,4 +1,5 @@
 import {Injectable} from '@angular/core';
+import {Storage} from '@ionic/storage';
 import {Diagnostic, Geolocation} from 'ionic-native';
 import {STRINGS} from "../constants";
 
@@ -6,7 +7,27 @@ import {STRINGS} from "../constants";
 @Injectable()
 export class LocationProvider {
 
-  getLocation() {
+  private currentCity: any;
+
+  constructor(public storage: Storage) { }
+
+  getCurrentCity(): any {
+
+    return new Promise((resolve, reject) => {
+      resolve(this.currentCity);
+    });
+
+    // return this.storage.get('location').then(location => {
+    //   this.currentCity = location;
+    // });
+  }
+
+  setCurrentCity(city) {
+    this.currentCity = city;
+    //this.storage.set('location', city);
+  }
+
+  getUserLocation() {
     return new Promise((resolve, reject) => {
 
       if (!Diagnostic.isLocationEnabled) {

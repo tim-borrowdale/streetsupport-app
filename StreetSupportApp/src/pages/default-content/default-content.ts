@@ -1,7 +1,6 @@
 import {Component} from '@angular/core';
 import {NavController, NavParams} from 'ionic-angular';
 import {STRINGS} from "../../constants";
-//import {OrganisationPage} from '../organisation/organisation';
 
 
 @Component({
@@ -15,9 +14,5 @@ export class ContentPage {
   constructor(public nav: NavController, navParams: NavParams) {
     const contentId = navParams.get('contentId');
     this.content = STRINGS[contentId];
-  }
-
-  showOrganisation(key) {
-    //this.nav.push(OrganisationPage, { item: {key: key}, reload: true });
   }
 }

@@ -1,20 +1,19 @@
 import {Component} from "@angular/core";
-import {Storage} from '@ionic/storage';
 import {NavController, NavParams, Loading, LoadingController, AlertController} from 'ionic-angular';
+import {ContentProvider} from '../../providers/content-provider';
 import {LocationProvider} from '../../providers/location-provider';
-import {ContentService} from '../../services/content-service';
 import {TimetabledCategoryDetailPage} from '../timetabled-category-detail/timetabled-category-detail';
+import parse from 'marked';
 
 
 @Component({
-  templateUrl: 'timetabled-category.html',
-  providers: [LocationProvider, ContentService]
+  templateUrl: 'timetabled-category.html'
 })
 export class TimetabledCategoryPage {
 
-  public category: any;
-  public locationEnabled = false;
-  public location: any;
+  public categoryKey: string;
+  public cityName: string;
+  public category: any = {};
   public serviceDays: any;
   public loader: Loading;
 
@@ -23,61 +22,37 @@ export class TimetabledCategoryPage {
     public navParams: NavParams,
     public loadingCtrl: LoadingController,
     public alertCtrl: AlertController,
-    public locationProvider: LocationProvider,
-    public contentService: ContentService,
-    public storage: Storage) {
+    public contentService: ContentProvider,
+    public locationProvider: LocationProvider) {
 
-    this.category = navParams.get('item');
+    this.categoryKey = navParams.get('category');
+  }
 
-    this.storage.get('locationEnabled').then((val) => {
-      if (val === null) {
-        this.locationEnabled = false;
-      } else {
-        this.locationEnabled = val;
+  ionViewWillEnter() {
+    this.locationProvider.getCurrentCity().then(city => {
+      if (this.cityName !== city.name) {
+        this.cityName = city.name;
+        this.loadServices(city.id);
       }
-
-      this.loadServices();
     });
   }
 
-  loadServices() {
+  loadServices(cityId) {
     this.presentLoading();
 
-    if (this.locationEnabled) {
-      return this.locationProvider.getLocation().then(location => {
-        this.getServices(this.category.key, location);
-      }).catch(error => {
-        this.loader.dismissAll();
+    this.contentService.findTimetabledServices(this.categoryKey, cityId).then(data => {
+      this.category = data;
+      this.serviceDays = data.daysServices;
+      this.loader.dismissAll();
+    }).catch(error => {
         let alert = this.alertCtrl.create({
-          title: 'Location Error',
-          subTitle: error,
+          title: 'API Error',
+          subTitle: 'could not get data at this time. Please try again later.',
           buttons: ['Ok']
         });
 
         alert.present();
-        this.getServices(this.category.key, {});
       });
-    }
-
-    this.getServices(this.category.key, {});
-  }
-
-  getServices(category, location) {
-    this.contentService.findTimetabledServices(
-      category,
-      location.latitude,
-      location.longitude).then(data => {
-        this.serviceDays = this.sortByDay(data.daysServices);
-        this.loader.dismissAll();
-    }).catch(error => {
-      let alert = this.alertCtrl.create({
-        title: 'API Error',
-        subTitle: 'could not get data at this time. Please try again later.',
-        buttons: ['Ok']
-      });
-
-      alert.present();
-    });
   }
 
   private getSortedDayNames() {
@@ -115,11 +90,7 @@ export class TimetabledCategoryPage {
   }
 
   presentLoading() {
-    this.loader = this.loadingCtrl.create({
-      content: "Please wait...",
-      dismissOnPageChange: false
-    });
-
+    this.loader = this.loadingCtrl.create({ content: "Please wait..." });
     this.loader.present();
   }
 
@@ -127,9 +98,8 @@ export class TimetabledCategoryPage {
     this.nav.push(TimetabledCategoryDetailPage, { item: provider });
   }
 
-  changeLocation() {
-    this.locationEnabled = !this.locationEnabled;
-    this.storage.set('locationEnabled', this.locationEnabled);
-    this.loadServices();
+  locationChanged(city) {
+    this.cityName = city.name;
+    this.loadServices(city.id);
   }
 }

@@ -1,18 +1,11 @@
-<ion-header>
-  <ion-navbar color="primary">
-    <ion-title>
-      <img src="assets/images/logo.png" width="32" height="34" />
-    </ion-title>
-  </ion-navbar>
-</ion-header>
-
+<ion-header></ion-header>
 <ion-content class="organisation">
   <div class="header-block">
     <h1 class="header-block__heading" [innerHTML]="organisation.name"></h1>
     <p class="header-block__sub-heading" [innerHTML]="organisation.shortDescription"></p>
     <p [innerHTML]="organisation.description"></p>
   </div>
-  <div *ngFor="let address of organisation.addresses">
+  <div *ngFor="let address of orgAddresses">
     <div class="content-block">
       <h2>Location</h2>
       <p>
@@ -23,9 +16,8 @@
         <span *ngIf="address.city" [innerHTML]="address.city">, </span>
         <span *ngIf="address.postcode" [innerHTML]="address.postcode"></span>
       </p>
-    </div>
-    <div class="content-block">
-      <h2>Opening Times</h2>
+      <p>&nbsp;</p>
+      <h3>Opening Times</h3>
       <dl class="result-detail__times-list" *ngFor="let time of address.openingTimes">
         <dt>{{time.day}}</dt>
         <dd class="result-detail__times-item">{{time.startTime}} - {{time.endTime}}</dd>
@@ -36,7 +28,7 @@
     <h2>Services Provided</h2>
   </div>
   <ion-list>
-    <ion-item no-padding *ngFor="let service of sortAlphabetically(organisation.providedServices)" (click)="itemTapped(event, service)">
+    <ion-item *ngFor="let service of services | sortByAlpha" (click)="itemTapped(event, service)">
       {{service.name}}
       <ion-icon name="arrow-forward" item-right></ion-icon>
     </ion-item>

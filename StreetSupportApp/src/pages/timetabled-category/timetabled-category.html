@@ -1,25 +1,9 @@
-<ion-header>
-  <ion-navbar color="primary">
-    <ion-title>
-      <img src="assets/images/logo.png" width="32" height="34" />
-    </ion-title>
-    <ion-buttons end>
-      <button ion-button icon-only (click)="changeLocation()">
-        <ion-icon isActive="{{locationEnabled}}" name="pin"></ion-icon>
-      </button>
-    </ion-buttons>
-  </ion-navbar>
-</ion-header>
-
+<ion-header (didChangeLocation)="locationChanged($event)"></ion-header>
 <ion-content class="timetable-category">
   <div class="header-block header-block--centered">
-    <h1 [innerHTML]="category.name"></h1>
-    <p>Showing results within 10k of
-      <strong *ngIf="locationEnabled">your location</strong>
-      <strong *ngIf="!locationEnabled">Greater Manchester</strong>.
-    </p>
+    <h1 [innerHTML]="category.categoryName"></h1>
+    <p>Showing results within 10k of <strong>{{cityName}}</strong></p>
   </div>
-
   <ion-list *ngFor="let day of serviceDays">
     <ion-list-header class="category-header">
       {{day.name}}

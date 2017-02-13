@@ -17,6 +17,6 @@ export class TimetabledCategoryDetailPage {
   }
 
   organisationButtonTapped(provider) {
-    this.nav.push(OrganisationPage, {item: provider, reload: true});
+    this.nav.push(OrganisationPage, {item: provider.key, reload: true});
   }
 }

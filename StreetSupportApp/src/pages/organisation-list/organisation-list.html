@@ -1,19 +1,11 @@
-<ion-header>
-  <ion-navbar color="primary">
-    <ion-title>
-      <img src="assets/images/logo.png" width="32" height="34" />
-    </ion-title>
-  </ion-navbar>
-</ion-header>
-
+<ion-header (didChangeLocation)="locationChanged($event)"></ion-header>
 <ion-content class="org-list">
-  <div class="header">
-    <h1 class="header__title">Full Listing</h1>
-    <p class="header__copy">Charities, voluntary groups and government services in Manchester</p>
+  <div class="section-header">
+    <h1 class="section-header__title">Full Listing</h1>
+    <p class="section-header__copy">Charities, voluntary groups and government services in {{cityName}}</p>
   </div>
-
   <ion-list>
-    <ion-item *ngFor="let provider of providers" (click)="itemTapped(event, provider)">
+    <ion-item *ngFor="let provider of providers | sortByAlpha" (click)="itemTapped(event, provider)">
       <span [innerHTML]="provider.name"></span>
       <ion-icon name="arrow-forward" item-right></ion-icon>
     </ion-item>

@@ -1,9 +1,10 @@
-import { NgModule } from '@angular/core';
-import { IonicApp, IonicModule } from 'ionic-angular';
+import { NgModule, ErrorHandler } from '@angular/core';
+import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
-import { ApiService } from '../services/api-service';
-import { ContentService } from '../services/content-service';
 import { MyApp } from './app.component';
+import { LocationProvider } from '../providers/location-provider';
+import { ApiProvider } from '../providers/api-provider';
+import { ContentProvider } from '../providers/content-provider';
 import { AboutPage } from '../pages/about/about';
 import { ContentPage } from '../pages/default-content/default-content';
 import { EmergencyPage } from '../pages/emergency/emergency';
@@ -17,6 +18,9 @@ import { OrganisationListPage } from '../pages/organisation-list/organisation-li
 import { OrganisationServicePage } from '../pages/organisation-service/organisation-service';
 import { TimetabledCategoryPage } from '../pages/timetabled-category/timetabled-category';
 import { TimetabledCategoryDetailPage } from '../pages/timetabled-category-detail/timetabled-category-detail';
+import { HeaderComponent } from '../components/header/header';
+import { SortByOrder } from '../pipes/sort-by-order';
+import { SortByAlpha } from '../pipes/sort-by-alpha';
 
 @NgModule({
   declarations: [
@@ -33,7 +37,10 @@ import { TimetabledCategoryDetailPage } from '../pages/timetabled-category-detai
     OrganisationListPage,
     OrganisationServicePage,
     TimetabledCategoryPage,
-    TimetabledCategoryDetailPage
+    TimetabledCategoryDetailPage,
+    HeaderComponent,
+    SortByOrder, 
+    SortByAlpha
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -56,9 +63,11 @@ import { TimetabledCategoryDetailPage } from '../pages/timetabled-category-detai
     TimetabledCategoryDetailPage
   ],
   providers: [
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
     Storage,
-    ApiService,
-    ContentService
+    ApiProvider,
+    ContentProvider,
+    LocationProvider
   ]
 })
 export class AppModule {}

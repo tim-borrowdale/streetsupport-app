@@ -1,4 +1,4 @@
-export let API_BASE_URL = 'https://live-api-streetsupport.azurewebsites.net/v2';
+export let API_BASE_URL = 'https://live-api-streetsupport.azurewebsites.net';
 export let STRINGS = {
   LOCATION_ERROR_MESSAGE: 'To use location services for this app they must be enabled in settings.',
   REGISTER_HOMELESS_COPY: '<h1>Register as Homeless</h1><p>If you have just become homeless, or might do in the next 28 days, the first thing to do is apply as homeless at your local council.</p><p>If the council accepts you are homeless, they will try to find accommodation and you will be able to access other support services.</p><p>For Manchester, you can visit the town hall, or call the City Council\'s team on 0161 234 4692 Mon-Fri between 9am and 4.30pm. In an emergency out of hours you can call 0161 234 5001.</p><p>If you would like more information about your legal rights, you can call Shelter on 0808 800 4444 or visit their website.</p>',
