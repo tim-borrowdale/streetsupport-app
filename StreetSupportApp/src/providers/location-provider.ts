@@ -7,24 +7,14 @@ import {STRINGS} from "../constants";
 @Injectable()
 export class LocationProvider {
 
-  private currentCity: any;
-
-  constructor(public storage: Storage) { }
+  constructor(private storage: Storage) { }
 
   getCurrentCity(): any {
-
-    return new Promise((resolve, reject) => {
-      resolve(this.currentCity);
-    });
-
-    // return this.storage.get('location').then(location => {
-    //   this.currentCity = location;
-    // });
+    return this.storage.get('location');
   }
 
   setCurrentCity(city) {
-    this.currentCity = city;
-    //this.storage.set('location', city);
+    this.storage.set('location', city);
   }
 
   getUserLocation() {

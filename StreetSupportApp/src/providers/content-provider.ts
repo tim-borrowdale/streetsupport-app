@@ -6,11 +6,11 @@ import {LocationProvider} from "./location-provider";
 @Injectable()
 export class ContentProvider {
 
+  cities: any;
+
   constructor(
     public api: ApiProvider,
     public locationProvider: LocationProvider) { }
-
-  cities: any;
 
   findCities(): any {
 
@@ -19,8 +19,7 @@ export class ContentProvider {
     }
 
     return this.api.call('/v1/cities').then(cities => {
-      this.cities = cities.filter(c => c.swepIsAvailable === true);
-      return this.cities;
+      return this.cities = cities;
     });
   }
 
