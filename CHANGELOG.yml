@@ -1,8 +1,11 @@
 upcoming:
-  version: 1.0.9
+  version: 1.1.0
   notes:
-  - Fix for missing splash screen
+  - Location updates
 releases:
+- version: 1.0.9
+  notes:
+- Fix for missing splash screen
 - version: 0.0.1
   notes:
   - Initialised Repository

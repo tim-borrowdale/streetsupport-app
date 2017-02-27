@@ -1,1 +1,1 @@
-- Fix for missing splash screen
+- Location updates
