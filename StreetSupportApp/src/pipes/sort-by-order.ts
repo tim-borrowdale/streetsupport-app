@@ -9,7 +9,7 @@ export class SortByOrder {
 
   transform(items: any[]) {
 
-    if (items === undefined || items === null) {
+    if (items === undefined || items === null || !Array.isArray(items)) {
       return;
     }
 

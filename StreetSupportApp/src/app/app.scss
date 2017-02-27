@@ -120,6 +120,10 @@ ion-content {
   font-weight: bold;
   box-shadow: 0 3px 0 0 #b37100;
   width: 100%;
+
+  &--short {
+    width: auto;
+  }
 }
 
 .button-default.activated {

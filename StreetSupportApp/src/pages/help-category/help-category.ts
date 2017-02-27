@@ -12,7 +12,9 @@ import parse from 'marked';
 export class HelpCategoryPage {
 
   public categoryKey: string;
-  public cityName: string;
+  public city: any;
+  public locationEnabled: boolean = true;
+  public locationSearch = true;
   public category = {};
   public providers = [];
   public loader: Loading;
@@ -30,8 +32,8 @@ export class HelpCategoryPage {
 
   ionViewWillEnter() {
     this.locationProvider.getCurrentCity().then(city => {
-      if (this.cityName !== city.name) {
-        this.cityName = city.name;
+      if (this.city === undefined || this.city.name !== city.name) {
+        this.city = city;
         this.loadServices(city.id);
       }
     });
@@ -40,9 +42,10 @@ export class HelpCategoryPage {
   loadServices(cityId) {
     this.presentLoading();
 
-    this.contentService.findStandardServices(this.categoryKey, cityId).then(data => {
-      this.category = data.category;
-      this.providers = data.providers;
+    this.contentService.findStandardServices(this.categoryKey, cityId, this.locationSearch).then(data => {
+      this.category = data.services.category;
+      this.providers = data.services.providers;
+      this.locationEnabled = data.locationEnabled;
       this.loader.dismissAll();
     }).catch(error => {
       this.loader.dismissAll();
@@ -66,7 +69,12 @@ export class HelpCategoryPage {
   }
 
   locationChanged(city) {
-    this.cityName = city.name;
+    this.city = city;
     this.loadServices(city.id);
+  }
+
+  useMyLocationTapped() {
+    this.locationSearch = !this.locationSearch;
+    this.loadServices(this.city.id);
   }
 }
