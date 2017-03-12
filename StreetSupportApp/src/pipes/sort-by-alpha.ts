@@ -9,7 +9,7 @@ export class SortByAlpha {
 
   transform(items: any[]) {
 
-    if (items === undefined || items == null) {
+    if (items === undefined || items === null) {
       return;
     }
 

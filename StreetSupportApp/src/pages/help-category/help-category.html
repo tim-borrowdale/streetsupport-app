@@ -2,7 +2,7 @@
 <ion-content class="help-category">
   <div class="header-block header-block--centered">
     <h1 [innerHTML]="category.name"></h1>
-    <p>Showing results within 10k of <a (click)="useMyLocationTapped($event)"><strong>{{locationSearch ? "your location" : city.name}}</strong></a></p>
+    <p>Showing results within 10km of <a (click)="useMyLocationTapped($event)"><strong>{{locationSearch ? "your location" : city.name}}</strong></a></p>
   </div>
   <ion-list>
     <ion-item class="category__item" *ngFor="let provider of providers" (click)="itemTapped(provider)">

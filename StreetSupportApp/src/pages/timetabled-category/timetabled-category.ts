@@ -12,10 +12,11 @@ import parse from 'marked';
 export class TimetabledCategoryPage {
 
   public categoryKey: string;
-  public cityName: string;
+  public city: any;
   public category: any = {};
   public serviceDays: any;
   public loader: Loading;
+  public locationSearch = true;
 
   constructor(
     public nav: NavController,
@@ -30,8 +31,8 @@ export class TimetabledCategoryPage {
 
   ionViewWillEnter() {
     this.locationProvider.getCurrentCity().then(city => {
-      if (this.cityName !== city.name) {
-        this.cityName = city.name;
+      if (this.city === undefined || this.city.name !== city.name) {
+        this.city = city;
         this.loadServices(city.id);
       }
     });
@@ -40,52 +41,22 @@ export class TimetabledCategoryPage {
   loadServices(cityId) {
     this.presentLoading();
 
-    this.contentService.findTimetabledServices(this.categoryKey, cityId).then(data => {
-      this.category = data;
-      this.serviceDays = data.daysServices;
+    this.contentService.findTimetabledServices(this.categoryKey, cityId, this.locationSearch).then(data => {
+      this.category = data.services;
+      this.serviceDays = data.services.daysServices;
+      if (this.locationSearch == true && data.locationEnabled == false) {
+        this.locationSearch = false;
+      }
       this.loader.dismissAll();
     }).catch(error => {
-        let alert = this.alertCtrl.create({
-          title: 'API Error',
-          subTitle: 'could not get data at this time. Please try again later.',
-          buttons: ['Ok']
-        });
-
-        alert.present();
+      this.loader.dismissAll();
+      let alert = this.alertCtrl.create({
+        title: 'API Error',
+        subTitle: 'could not get data at this time. Please try again later.',
+        buttons: ['Ok']
       });
-  }
 
-  private getSortedDayNames() {
-    const currentDayIndex = new Date().getDay();
-    let dayNames = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
-    return dayNames.slice(currentDayIndex).concat(dayNames.slice(0, currentDayIndex));
-  }
-
-  sortByDay(days) {
-    let daysOfWeek = this.getSortedDayNames();
-
-    return days.sort(function(a, b) {
-
-      var indexA = daysOfWeek.indexOf(a.name);
-      var indexB = daysOfWeek.indexOf(b.name);
-
-      if (indexA < indexB) {
-        return -1;
-      }
-      if (indexA > indexB) {
-        return 1;
-      }
-
-      return 0;
-    });
-  }
-
-  sortByOpeningTime(providers) {
-    return providers.sort(function(a, b) {
-      const dateA = new Date('1970/01/01 ' + a.openingTime.startTime);
-      const dateB = new Date('1970/01/01 ' + b.openingTime.startTime);
-
-      return dateA.valueOf() - dateB.valueOf();
+      alert.present();
     });
   }
 
@@ -99,7 +70,12 @@ export class TimetabledCategoryPage {
   }
 
   locationChanged(city) {
-    this.cityName = city.name;
+    this.city = city;
     this.loadServices(city.id);
+  }
+
+  useMyLocationTapped() {
+    this.locationSearch = !this.locationSearch;
+    this.loadServices(this.city.id);
   }
 }

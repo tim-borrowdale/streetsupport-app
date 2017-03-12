@@ -13,7 +13,6 @@ export class HelpCategoryPage {
 
   public categoryKey: string;
   public city: any;
-  public locationEnabled: boolean = true;
   public locationSearch = true;
   public category = {};
   public providers = [];
@@ -45,7 +44,9 @@ export class HelpCategoryPage {
     this.contentService.findStandardServices(this.categoryKey, cityId, this.locationSearch).then(data => {
       this.category = data.services.category;
       this.providers = data.services.providers;
-      this.locationEnabled = data.locationEnabled;
+      if (this.locationSearch == true && data.locationEnabled == false) {
+        this.locationSearch = false;
+      }
       this.loader.dismissAll();
     }).catch(error => {
       this.loader.dismissAll();
