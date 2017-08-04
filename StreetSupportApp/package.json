@@ -38,6 +38,7 @@
     "cordova-plugin-splashscreen",
     "cordova-plugin-statusbar",
     "ionic-plugin-keyboard",
+    "cordova-plugin-geolocation", 
     {
       "id": "cordova-plugin-app-name",
       "locator": "cordova-plugin-app-name",
@@ -53,8 +54,7 @@
         "FABRIC_API_KEY": "9c05bcebe482e3c8b04a8846c3e5f6ee2266a16a",
         "FABRIC_API_SECRET": "dcc78d4a0c390e5e4ebf582004bc21ea872edff9863d2fe5fa2cd6f48d1cf3e2"
       }
-    },
-    "cordova.plugins.diagnostic"
+    }
   ],
   "cordovaPlatforms": [
     {
@@ -64,7 +64,7 @@
     },
     {
       "platform": "android",
-      "version": "6.1.1",
+      "version": "6.1.2",
       "locator": "android"
     }
   ]

@@ -21,6 +21,8 @@ import { TimetabledCategoryDetailPage } from '../pages/timetabled-category-detai
 import { HeaderComponent } from '../components/header/header';
 import { SortByOrder } from '../pipes/sort-by-order';
 import { SortByAlpha } from '../pipes/sort-by-alpha';
+import { SortByDay } from '../pipes/sort-by-day';
+import { SortByOpeningTime } from '../pipes/sort-by-opening-time';
 
 @NgModule({
   declarations: [
@@ -39,8 +41,10 @@ import { SortByAlpha } from '../pipes/sort-by-alpha';
     TimetabledCategoryPage,
     TimetabledCategoryDetailPage,
     HeaderComponent,
-    SortByOrder, 
-    SortByAlpha
+    SortByOrder,
+    SortByAlpha,
+    SortByDay,
+    SortByOpeningTime
   ],
   imports: [
     IonicModule.forRoot(MyApp)
