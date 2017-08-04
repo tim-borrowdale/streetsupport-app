@@ -2,6 +2,18 @@
 
 Hybrid app for iOS and Android using Ionic Framework v2
 
+### git-flow
+
+This repository uses the git-flow workflow. As such:
+
+* Master branch is the latest version of the app available to the public,
+* Develop branch is the next work in progress version,
+* Feature branches contain new functionality which are WIP, before they are ready to be merged into develop,
+* Release branches are for when getting ready to deploy a new version to Master. Used for last minute changes before a new build launches.
+* Hotfix branches are for emergency fixes to Master.
+
+*NEVER* work directly on the master branch. See https://danielkummer.github.io/git-flow-cheatsheet/ for a quick guide to git-flow.
+
 ### Tech
 
 * [Ionic] - mobile hybrid app framework built on top of Cordova and AngularJS v2
