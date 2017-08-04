@@ -20,12 +20,11 @@ This repository uses the git-flow workflow. As such:
 
 ### Installation
 
-You need Ionic CLI installed globally (may have to use sudo):
+* Install Node 6 (LTS),
+* Install NPM 5.2 (or above): `npm i npm -g`
+* Install Global Modules: `npm i cordova@6.5.0 ionic -g`,
+* Install Local Modules (in project folder) `npm i`.
 
-```sh
-$ npm install -g ionic@beta
-$ npm install -g cordova
-```
 During development run the following to run the app in a browser from a local server
 
 ```sh
