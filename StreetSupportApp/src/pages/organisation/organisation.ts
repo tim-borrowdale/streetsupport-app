@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {InAppBrowser} from 'ionic-native';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 import {NavController, NavParams, Loading, LoadingController, ActionSheetController} from 'ionic-angular';
 import {ContentProvider} from '../../providers/content-provider';
 import {OrganisationServicePage} from '../organisation-service/organisation-service';
@@ -20,7 +20,9 @@ export class OrganisationPage {
     public navParams: NavParams,
     public loadingCtrl: LoadingController,
     public actionSheetCtrl: ActionSheetController,
-    public contentProvider: ContentProvider) {
+    public contentProvider: ContentProvider,
+    private iab: InAppBrowser
+  ) {
 
     let organisationId = navParams.get('item');
 
@@ -57,17 +59,20 @@ export class OrganisationPage {
         },{
           text: 'Website',
           handler: () => {
-            new InAppBrowser(this.organisation.website, '_system');
+            let browser = this.iab.create(this.organisation.website, '_system','');
+            browser.show();
           }
         },{
           text: 'Facebook',
           handler: () => {
-            new InAppBrowser(this.organisation.facebook, "_system", "location=no");
+            let browser = this.iab.create(this.organisation.facebook, '_system','location=no');
+            browser.show();
           }
         },{
           text: 'Twitter',
           handler: () => {
-            new InAppBrowser(this.organisation.twitter, "_system", "location=no");
+            let browser = this.iab.create(this.organisation.twitter, '_system','location=no');
+            browser.show();
           }
         },{
           text: 'Cancel',

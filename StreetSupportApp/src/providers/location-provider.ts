@@ -1,13 +1,16 @@
 import {Injectable} from '@angular/core';
 import {Storage} from '@ionic/storage';
-import {Geolocation} from 'ionic-native';
+import { Geolocation } from '@ionic-native/geolocation';
 import {STRINGS} from "../constants";
 
 
 @Injectable()
 export class LocationProvider {
 
-  constructor(private storage: Storage) { }
+  constructor(
+    private storage: Storage,
+    private geolocation: Geolocation
+  ) { }
 
   getCurrentCity(): any {
     return this.storage.get('location');
@@ -18,7 +21,7 @@ export class LocationProvider {
   }
 
   getUserLocation() {
-    return Geolocation.getCurrentPosition({ timeout: 5000 }).then((resp) => {
+    return this.geolocation.getCurrentPosition({ timeout: 5000 }).then((resp) => {
       return {
         latitude: resp.coords.latitude,
         longitude: resp.coords.longitude

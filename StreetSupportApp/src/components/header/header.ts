@@ -22,7 +22,7 @@ export class HeaderComponent {
     private loadingCtrl: LoadingController,
     private locationProvider: LocationProvider) {
 
-      contentProvider.findCities().then(cities => {
+      this.contentProvider.findCities().then(cities => {
         this.cities = cities;
       });
 

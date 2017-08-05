@@ -3,7 +3,7 @@ import {NavController, NavParams, Loading, LoadingController, AlertController} f
 import {ContentProvider} from '../../providers/content-provider';
 import {LocationProvider} from '../../providers/location-provider';
 import {TimetabledCategoryDetailPage} from '../timetabled-category-detail/timetabled-category-detail';
-import parse from 'marked';
+// import parse from 'marked';
 
 
 @Component({
