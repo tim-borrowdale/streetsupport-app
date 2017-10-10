@@ -11,6 +11,7 @@ import { ContentProvider } from '../providers/content-provider';
 
 import { AboutPage } from '../pages/about/about';
 import { ContentPage } from '../pages/default-content/default-content';
+import { AccomodationPage } from '../pages/accomodation/accomodation';
 import { EmergencyPage } from '../pages/emergency/emergency';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
@@ -42,6 +43,7 @@ import { StatusBar } from '@ionic-native/status-bar';
     MyApp,
     AboutPage,
     HomePage,
+    AccomodationPage,
     TabsPage,
     ContentPage,
     EmergencyPage,
@@ -69,6 +71,7 @@ import { StatusBar } from '@ionic-native/status-bar';
   entryComponents: [
     MyApp,
     AboutPage,
+    AccomodationPage,
     HomePage,
     TabsPage,
     ContentPage,
