@@ -1,7 +1,21 @@
 <ion-header></ion-header>
-<ion-content class="default-content">
-  <div class="header-block" [innerHTML]="content"></div>
-  <div class="cta-block">
-    <button ion-button (click)="presentWebPage()">View Accomodation</button>
+<ion-content class="emergency">
+  <div class="header-block">
+    <h1>Accomodation</h1>
+    <p>Your accommodation options depend on your legal situation, location and your needs. Your council housing options team or local drop in centres may be able to support you to find accommodation.</p>
   </div>
+  <ion-list>
+    <ion-item (click)="itemTapped('https://streetsupport.net/find-help/accommodation/advice/')">
+      Read our advice guide
+      <ion-icon name="arrow-forward" item-right></ion-icon>
+    </ion-item>
+    <ion-item (click)="itemTapped('https://streetsupport.net/find-help/support/?sub-category=housing')">
+      Find support services
+      <ion-icon name="arrow-forward" item-right></ion-icon>
+    </ion-item>
+    <ion-item (click)="itemTapped('https://streetsupport.net/find-help/accommodation/listing/')">
+      Browse all accommodation
+      <ion-icon name="arrow-forward" item-right></ion-icon>
+    </ion-item>
+  </ion-list>
 </ion-content>
