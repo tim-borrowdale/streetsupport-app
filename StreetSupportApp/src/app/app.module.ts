@@ -13,6 +13,7 @@ import { AboutPage } from '../pages/about/about';
 import { ContentPage } from '../pages/default-content/default-content';
 import { AccomodationPage } from '../pages/accomodation/accomodation';
 import { EmergencyPage } from '../pages/emergency/emergency';
+import { EmergencyDetailPage } from '../pages/emergency-detail/emergency-detail';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { FindHelpPage } from '../pages/find-help/find-help';
@@ -47,6 +48,7 @@ import { StatusBar } from '@ionic-native/status-bar';
     TabsPage,
     ContentPage,
     EmergencyPage,
+    EmergencyDetailPage,
     FindHelpPage,
     HelpCategoryPage,
     HelpCategoryDetailPage,
@@ -76,6 +78,7 @@ import { StatusBar } from '@ionic-native/status-bar';
     TabsPage,
     ContentPage,
     EmergencyPage,
+    EmergencyDetailPage,
     FindHelpPage,
     HelpCategoryPage,
     HelpCategoryDetailPage,
