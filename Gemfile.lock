@@ -101,7 +101,6 @@ GEM
     os (0.9.6)
     plist (3.2.0)
     public_suffix (2.0.5)
-    rake (12.0.0)
     representable (2.3.0)
       uber (~> 0.0.7)
     retriable (2.1.0)
@@ -143,7 +142,6 @@ PLATFORMS
 
 DEPENDENCIES
   fastlane
-  rake
 
 BUNDLED WITH
-   1.13.1
+   1.15.4

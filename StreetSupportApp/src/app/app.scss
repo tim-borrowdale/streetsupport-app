@@ -105,6 +105,10 @@ ion-icon[item-right] {
     border-bottom: none;
 }
 
+ion-label p {
+  margin:0;
+}
+
 ion-content {
   background-color: rgb(238, 239, 240);
   color:#333;

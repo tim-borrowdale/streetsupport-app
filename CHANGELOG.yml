@@ -1,8 +1,14 @@
 upcoming:
-  version: 1.1.0
+  version: 1.4.0
+  notes:
+  - Bug fixes for data location
+releases:
+- version: 1.3.0
+  notes:
+  - Fixes for emergency accomodation
+- version: 1.1.0
   notes:
   - Location updates
-releases:
 - version: 1.0.9
   notes:
 - Fix for missing splash screen

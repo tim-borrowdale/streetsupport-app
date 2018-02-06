@@ -1,13 +1,22 @@
 import { NgModule, ErrorHandler } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { HttpModule } from '@angular/http';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
-import { Storage } from '@ionic/storage';
+import { IonicStorageModule } from '@ionic/storage';
 import { MyApp } from './app.component';
+
+import { StatusBar } from '@ionic-native/status-bar';
+import { SplashScreen } from '@ionic-native/splash-screen';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { Geolocation } from '@ionic-native/geolocation';
+
 import { LocationProvider } from '../providers/location-provider';
 import { ApiProvider } from '../providers/api-provider';
 import { ContentProvider } from '../providers/content-provider';
 import { AboutPage } from '../pages/about/about';
 import { ContentPage } from '../pages/default-content/default-content';
 import { EmergencyPage } from '../pages/emergency/emergency';
+import { EmergencyDetailPage } from '../pages/emergency-detail/emergency-detail';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { FindHelpPage } from '../pages/find-help/find-help';
@@ -32,6 +41,7 @@ import { SortByOpeningTime } from '../pipes/sort-by-opening-time';
     TabsPage,
     ContentPage,
     EmergencyPage,
+    EmergencyDetailPage,
     FindHelpPage,
     HelpCategoryPage,
     HelpCategoryDetailPage,
@@ -47,7 +57,10 @@ import { SortByOpeningTime } from '../pipes/sort-by-opening-time';
     SortByOpeningTime
   ],
   imports: [
-    IonicModule.forRoot(MyApp)
+    BrowserModule,
+    HttpModule,
+    IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -57,6 +70,7 @@ import { SortByOpeningTime } from '../pipes/sort-by-opening-time';
     TabsPage,
     ContentPage,
     EmergencyPage,
+    EmergencyDetailPage,
     FindHelpPage,
     HelpCategoryPage,
     HelpCategoryDetailPage,
@@ -67,6 +81,10 @@ import { SortByOpeningTime } from '../pipes/sort-by-opening-time';
     TimetabledCategoryDetailPage
   ],
   providers: [
+    StatusBar,
+    SplashScreen,
+    InAppBrowser,
+    Geolocation,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     Storage,
     ApiProvider,

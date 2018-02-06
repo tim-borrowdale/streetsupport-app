@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {InAppBrowser} from 'ionic-native';
+import {InAppBrowser} from '@ionic-native/in-app-browser';
 import {NavController} from 'ionic-angular';
 import {EmergencyPage} from '../emergency/emergency';
 
@@ -10,11 +10,10 @@ import {EmergencyPage} from '../emergency/emergency';
 })
 export class HomePage {
 
-  constructor(
-    public nav: NavController) { }
+  constructor(public nav: NavController, private iab: InAppBrowser) { }
 
   launch(url) {
-    new InAppBrowser(url, "_system");
+    const browser = this.iab.create(url, '_system');
   }
 
   emergencyItemTapped() {

@@ -37,7 +37,7 @@ UserInterfaceState.xcuserstate
 .bundle
 gems
 archive
-*.sh
 *.zip
 deploy/*.cer
 deploy/*.mobileprovision
+__local
