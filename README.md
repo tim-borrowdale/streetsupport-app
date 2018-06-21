@@ -1,10 +1,10 @@
 # Street Support App
 
-Hybrid app for iOS and Android using Ionic Framework v2
+Hybrid app for iOS and Android using Ionic Framework v3
 
 ### Tech
 
-* [Ionic] - mobile hybrid app framework built on top of Cordova and AngularJS v2
+* [Ionic] - mobile hybrid app framework built on top of Cordova and AngularJS v5
 
 ### Installation
 
