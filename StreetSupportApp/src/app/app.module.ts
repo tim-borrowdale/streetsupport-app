@@ -13,6 +13,7 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { LocationProvider } from '../providers/location-provider';
 import { ApiProvider } from '../providers/api-provider';
 import { ContentProvider } from '../providers/content-provider';
+import { AccomodationPage } from '../pages/accomodation/accomodation';
 import { AboutPage } from '../pages/about/about';
 import { ContentPage } from '../pages/default-content/default-content';
 import { EmergencyPage } from '../pages/emergency/emergency';
@@ -37,6 +38,7 @@ import { SortByOpeningTime } from '../pipes/sort-by-opening-time';
   declarations: [
     MyApp,
     AboutPage,
+    AccomodationPage,
     HomePage,
     TabsPage,
     ContentPage,
@@ -66,6 +68,7 @@ import { SortByOpeningTime } from '../pipes/sort-by-opening-time';
   entryComponents: [
     MyApp,
     AboutPage,
+    AccomodationPage,
     HomePage,
     TabsPage,
     ContentPage,
@@ -86,7 +89,6 @@ import { SortByOpeningTime } from '../pipes/sort-by-opening-time';
     InAppBrowser,
     Geolocation,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    Storage,
     ApiProvider,
     ContentProvider,
     LocationProvider

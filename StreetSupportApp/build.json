@@ -5,8 +5,8 @@
     },
     "release": {
       "developmentTeam": "TRKV797FME",
-      "codeSignIdentity": "iPhone Developer",
-      "packageType": "ad-hoc"
+      "codeSignIdentity": "iPhone Distribution: Sleep Safe Digital Ltd",
+      "packageType": "app-store"
     }
   }
 }

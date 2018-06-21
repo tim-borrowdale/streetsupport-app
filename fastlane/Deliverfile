@@ -1,4 +1,4 @@
-ipa "./fastlane/#{ENV['PROJECT_NAME']}.ipa"
+ipa "./archive/#{ENV['PROJECT_NAME']}.ipa"
 
 username ""
 screenshots_path "./fastlane/screenshots"

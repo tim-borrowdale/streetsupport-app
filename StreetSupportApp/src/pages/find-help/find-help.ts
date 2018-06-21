@@ -20,6 +20,7 @@ export class FindHelpPage {
 
     this.presentLoading();
     this.contentProvider.findServiceCategories().then(data => {
+      console.log('Found service categories');
       this.categories = data;
       this.loader.dismiss();
     });

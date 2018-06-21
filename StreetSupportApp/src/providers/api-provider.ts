@@ -10,7 +10,7 @@ export class ApiProvider {
   constructor(public http: Http) { }
 
   call(url): Promise<any> {
-
+    console.log(`${API_BASE_URL}${url}`);
     return this.http.get(`${API_BASE_URL}${url}`)
      .toPromise()
      .then(this.mapResponse)
@@ -18,17 +18,11 @@ export class ApiProvider {
   }
 
   private mapResponse(response): Promise<any> {
-    var jsonResponse;
-    try {
-      jsonResponse = response.json();
-    } catch(error) {
-      jsonResponse = {};
-    }
-
-    return Promise.resolve(jsonResponse);
+    return response.json();
   }
 
   private handleError(error: any): Promise<any> {
+    console.log(error);
     return Promise.reject(error.message || error);
   }
 }
