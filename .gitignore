@@ -38,8 +38,7 @@ UserInterfaceState.xcuserstate
 gems
 archive
 *.zip
-deploy/*.cer
-deploy/*.mobileprovision
+deploy
 __local
 
 # fastlane specific
