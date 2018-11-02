@@ -1,14 +1,21 @@
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
-import {Geolocation} from '@ionic-native/geolocation';
-import {STRINGS} from "../constants";
+import { Geolocation } from '@ionic-native/geolocation';
+import { STRINGS } from "../constants";
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/Rx';
 
 
 @Injectable()
 export class LocationProvider {
+  private locationUpdateObserver: any;
+  public newLocation: any = {};
 
   constructor(private storage: Storage, private geolocation: Geolocation) {
-
+    this.locationUpdateObserver = null;
+    this.newLocation = Observable.create(observer => {
+      this.locationUpdateObserver = observer;
+    });
   }
 
   getCurrentCity(): any {
@@ -17,6 +24,7 @@ export class LocationProvider {
 
   setCurrentCity(city) {
     this.storage.set('location', city);
+    this.locationUpdateObserver.next(city);
   }
 
   getUserLocation() {
