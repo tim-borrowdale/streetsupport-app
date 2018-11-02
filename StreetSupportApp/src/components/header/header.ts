@@ -22,11 +22,10 @@ export class HeaderComponent {
     private loadingCtrl: LoadingController,
     private locationProvider: LocationProvider) {
 
-      contentProvider.findCities().then(cities => {
-        this.cities = cities;
-      });
+    this.presentLoading();
+    contentProvider.findCities().then(cities => {
+      this.cities = cities;
 
-      this.presentLoading();
       this.locationProvider.getCurrentCity().then(city => {
         if (city === null) {
           this.locationProvider.setCurrentCity(this.cities[0]);
@@ -34,11 +33,11 @@ export class HeaderComponent {
         } else {
           this.currentCity = city;
         }
-
         this.loader.dismiss();
       }).catch((error) => {
         this.loader.dismiss();
       });
+    });
   }
 
   presentLoading() {
@@ -72,14 +71,12 @@ export class HeaderComponent {
     var buttons = [];
 
     for (let city of this.cities) {
-      buttons.push({ text: city.name, handler: () => {
-        this.changeLocation(city);
-      }});
+      buttons.push({
+        text: city.name, handler: () => {
+          this.changeLocation(city);
+        }
+      });
     }
-
-    // buttons.push({ text: 'My Location', handler: () => {
-    //   this.changeLocation({id: null, name: 'My Location'});
-    // }});
 
     buttons.push({ text: 'Cancel', role: 'cancel' });
     return buttons;
