@@ -20,11 +20,11 @@
     <h3>Web links</h3>
   </div>
   <ion-list class="external-links">
-    <ion-item (click)="launch('https://streetsupport.net/give-help/')">
-      <strong>Give Help</strong> - Give items, time or money
-    </ion-item>
     <ion-item *ngIf="currentLocation.abenIsEnabled" (click)="launch('https://streetsupport.net/gm/')">
       <strong>A Bed Every Night</strong> - Help this winter 
+    </ion-item>
+    <ion-item (click)="launch('https://streetsupport.net/give-help/')">
+      <strong>Give Help</strong> - Give items, time or money
     </ion-item>
     <ion-item *ngIf="currentLocation.bigChangeIsEnabled" (click)="launch('https://streetsupport.net/give-help/donate/')">
       <strong>Big Change</strong> - Donate to the Big Change Fund 
