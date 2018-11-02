@@ -23,7 +23,7 @@ export class HeaderComponent {
     private locationProvider: LocationProvider) {
 
     this.presentLoading();
-    contentProvider.findCities().then(cities => {
+    this.contentProvider.findCities().then(cities => {
       this.cities = cities;
 
       this.locationProvider.getCurrentCity().then(city => {

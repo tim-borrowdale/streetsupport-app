@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { NavController } from 'ionic-angular';
 import { EmergencyPage } from '../emergency/emergency';
+import { ContentProvider } from '../../providers/content-provider';
 import { LocationProvider } from '../../providers/location-provider';
 
 @Component({
@@ -10,23 +11,28 @@ import { LocationProvider } from '../../providers/location-provider';
 })
 export class HomePage {
   public currentLocation = {}
+  cities: any;
 
   constructor(
     public nav: NavController,
+    private contentProvider: ContentProvider,
     public locationProvider: LocationProvider,
     private iab: InAppBrowser) {
-
   }
 
   ionViewWillEnter() {
-    this.locationProvider.getCurrentCity()
-      .then((city) => {
-        this.currentLocation = city;
-      })
+    this.contentProvider.findCities().then(cities => {
+      this.cities = cities;
+
+      this.locationProvider.getCurrentCity()
+        .then((city) => {
+          this.currentLocation = city;
+        })
+    })
 
     this.locationProvider.newLocation.subscribe((newLocation) => {
-        this.currentLocation = newLocation;
-      })
+      this.currentLocation = newLocation;
+    })
   }
 
   launch(url) {
