@@ -22,23 +22,23 @@ export class HeaderComponent {
     private loadingCtrl: LoadingController,
     private locationProvider: LocationProvider) {
 
-      contentProvider.findCities().then(cities => {
-        this.cities = cities;
-      });
+    contentProvider.findCities().then(cities => {
+      this.cities = cities;
+    });
 
-      this.presentLoading();
-      this.locationProvider.getCurrentCity().then(city => {
-        if (city === null) {
-          this.locationProvider.setCurrentCity(this.cities[0]);
-          this.currentCity = this.cities[0];
-        } else {
-          this.currentCity = city;
-        }
+    this.presentLoading();
+    this.locationProvider.getCurrentCity().then(city => {
+      if (city === null) {
+        this.locationProvider.setCurrentCity(this.cities[0]);
+        this.currentCity = this.cities[0];
+      } else {
+        this.currentCity = city;
+      }
 
-        this.loader.dismiss();
-      }).catch((error) => {
-        this.loader.dismiss();
-      });
+      this.loader.dismiss();
+    }).catch((error) => {
+      this.loader.dismiss();
+    });
   }
 
   presentLoading() {
@@ -68,19 +68,19 @@ export class HeaderComponent {
   }
 
   private getActionButtons(): string[] {
-
-    var buttons = [];
-
-    for (let city of this.cities) {
-      buttons.push({ text: city.name, handler: () => {
-        this.changeLocation(city);
-      }});
-    }
-
-    // buttons.push({ text: 'My Location', handler: () => {
-    //   this.changeLocation({id: null, name: 'My Location'});
-    // }});
-
+    let buttons = this.cities
+      .sort((a, b) => {
+        if (a.name < b.name) return -1;
+        if (a.name > b.name) return 1;
+        return 0;
+      })
+      .map((c) => {
+        return {
+          text: c.name, handler: () => {
+            this.changeLocation(c);
+          }
+        }
+      })
     buttons.push({ text: 'Cancel', role: 'cancel' });
     return buttons;
   }
