@@ -67,16 +67,19 @@ export class HeaderComponent {
   }
 
   private getActionButtons(): string[] {
-
-    var buttons = [];
-
-    for (let city of this.cities) {
-      buttons.push({
-        text: city.name, handler: () => {
-          this.changeLocation(city);
+    let buttons = this.cities
+      .sort((a, b) => {
+        if (a.name < b.name) return -1;
+        if (a.name > b.name) return 1;
+        return 0;
+      })
+      .map((c) => {
+        return {
+          text: c.name, handler: () => {
+            this.changeLocation(c);
+          }
         }
       });
-    }
 
     buttons.push({ text: 'Cancel', role: 'cancel' });
     return buttons;
