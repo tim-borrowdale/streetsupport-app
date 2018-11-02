@@ -24,10 +24,14 @@ export class HomePage {
     this.contentProvider.findCities().then(cities => {
       this.cities = cities;
 
-      this.locationProvider.getCurrentCity()
-        .then((city) => {
-          this.currentLocation = city;
-        })
+      try {
+        this.locationProvider.getCurrentCity()
+          .then((city) => {
+            this.currentLocation = city;
+          })
+      } catch (e) {
+        console.log(e)
+      }
     })
 
     this.locationProvider.newLocation.subscribe((newLocation) => {

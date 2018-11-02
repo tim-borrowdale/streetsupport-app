@@ -10,7 +10,7 @@ import { LocationProvider } from '../../providers/location-provider';
 })
 export class HeaderComponent {
 
-  public currentCity: any;
+  public currentCity: any = {};
   cities: any;
   loader: Loading;
   @Output() didChangeLocation = new EventEmitter<string>();
@@ -28,8 +28,7 @@ export class HeaderComponent {
 
       this.locationProvider.getCurrentCity().then(city => {
         if (city === null) {
-          this.locationProvider.setCurrentCity(this.cities[0]);
-          this.currentCity = this.cities[0];
+          this.presentActionSheet();
         } else {
           this.currentCity = city;
         }
