@@ -2,7 +2,7 @@
 <ion-content class="home">
   <div class="section-header">
     <h1 class="section-header__title">Street Support</h1>
-    <p class="section-header__copy">Supporting homeless people together</p>
+    <p class="section-header__copy">Working Together to End Homelessness</p>
   </div>
   <ion-list>
     <ion-item (click)="emergencyItemTapped()">
@@ -20,17 +20,20 @@
     <h3>Web links</h3>
   </div>
   <ion-list class="external-links">
+    <ion-item *ngIf="currentLocation.abenIsEnabled" (click)="launch('https://streetsupport.net/gm/')">
+      <strong>A Bed Every Night</strong> - Help this winter 
+    </ion-item>
     <ion-item (click)="launch('https://streetsupport.net/give-help/')">
-      <strong>Give Help</strong> - Find out what you can do
+      <strong>Give Help</strong> - Give items, time or money
     </ion-item>
-    <ion-item (click)="launch('https://streetsupport.net/give-help/donate/')">
-      <strong>Donate</strong> - Donate to the Big Change Fund
+    <ion-item *ngIf="currentLocation.bigChangeIsEnabled" (click)="launch('https://streetsupport.net/give-help/donate/')">
+      <strong>Big Change</strong> - Donate to the Big Change Fund 
     </ion-item>
-    <ion-item (click)="launch('https://charter.streetsupport.net/')">
+    <ion-item *ngIf="currentLocation.charterIsEnabled" (click)="launch('https://charter.streetsupport.net/')">
       <strong>Manchester Homelessness Charter</strong>
     </ion-item>
     <ion-item (click)="launch('http://news.streetsupport.net/')">
-      <strong>News</strong> - View the latest news
+      <strong>News</strong> - Read the latest updates 
     </ion-item>
   </ion-list>
 </ion-content>

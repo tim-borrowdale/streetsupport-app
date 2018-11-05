@@ -1,8 +1,26 @@
 <ion-header></ion-header>
 <ion-content padding class="about">
   <h1>About Street Support</h1>
-  <p>Street Support is a network that connects charities and voluntary groups that support homeless people, with all those who’d like to help.</p>
-  <p>We are a collective of digital experts based in Manchester UK, working closely alongside local people who are homeless and the organisations that support them.</p>
-  <p>We launched in Manchester in early 2016, with Leeds coming online soon, and we hope to reach out to more locations in the coming months. If you would like to see Street Support in your city, get in touch!</p>
+  <p>Street Support Network connects people and organisations locally to End Homelessness together.</p>
+  <p>Our long term vision is a citizen-led network, where people with personal insight into homelessness, decision
+    makers and people with resources co-create solutions together.</p>
+  <p>We have a core team of 5 people based in Manchester, 2 of us have lived experience of homelessness. Each location
+    we are active in has a local co-ordinator, supported by organisations and volunteers.</p>
   <p>You can find out more in the News section of our website, or on Facebook, or Twitter.</p>
+
+
+  <div class="wrapper">
+    <h3>Web links</h3>
+  </div>
+  <ion-list class="external-links">
+    <ion-item (click)="launch('https://streetsupport.net/about/')">
+      <strong>About Us</strong> - Learn more about Street Support
+    </ion-item>
+    <ion-item (click)="launch('https://www.facebook.com/streetsupport')">
+      <strong>Facebook</strong>
+    </ion-item>
+    <ion-item (click)="launch('https://twitter.com/streetsupportuk')">
+      <strong>Twitter</strong>
+    </ion-item>
+  </ion-list>
 </ion-content>

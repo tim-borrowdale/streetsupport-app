@@ -52,3 +52,6 @@ fastlane/screenshots
 
 # scan temporary files
 fastlane/test_output
+
+# generated on build
+StreetSupportApp/.sourcemaps/main.js.map

@@ -25,8 +25,8 @@ $ ionic serve
 to build for a particular platform (ios, android) run
 
 ```sh
-$ ionic platform add [platform]
-$ ionic emulate [platform]
+$ ionic cordova platform add [platform]
+$ ionic cordova emulate [platform]
 ```
 
 To run on  a device run

@@ -10,7 +10,7 @@ import { LocationProvider } from '../../providers/location-provider';
 })
 export class HeaderComponent {
 
-  public currentCity: any;
+  public currentCity: any = {};
   cities: any;
   loader: Loading;
   @Output() didChangeLocation = new EventEmitter<string>();
@@ -22,22 +22,20 @@ export class HeaderComponent {
     private loadingCtrl: LoadingController,
     private locationProvider: LocationProvider) {
 
-    contentProvider.findCities().then(cities => {
-      this.cities = cities;
-    });
-
     this.presentLoading();
-    this.locationProvider.getCurrentCity().then(city => {
-      if (city === null) {
-        this.locationProvider.setCurrentCity(this.cities[0]);
-        this.currentCity = this.cities[0];
-      } else {
-        this.currentCity = city;
-      }
+    this.contentProvider.findCities().then(cities => {
+      this.cities = cities;
 
-      this.loader.dismiss();
-    }).catch((error) => {
-      this.loader.dismiss();
+      this.locationProvider.getCurrentCity().then(city => {
+        if (city === null) {
+          this.presentActionSheet();
+        } else {
+          this.currentCity = city;
+        }
+        this.loader.dismiss();
+      }).catch((error) => {
+        this.loader.dismiss();
+      });
     });
   }
 
@@ -80,7 +78,8 @@ export class HeaderComponent {
             this.changeLocation(c);
           }
         }
-      })
+      });
+
     buttons.push({ text: 'Cancel', role: 'cancel' });
     return buttons;
   }
