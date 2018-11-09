@@ -55,3 +55,9 @@ fastlane/test_output
 
 # generated on build
 StreetSupportApp/.sourcemaps/main.js.map
+*.ipa
+fastlane/report.xml
+
+# certificates
+*.cer
+*.mobileprovision
