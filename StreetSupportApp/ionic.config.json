@@ -1,6 +1,5 @@
 {
   "name": "streetsupport-app",
-  "app_id": "",
   "integrations": {
     "cordova": {}
   },
