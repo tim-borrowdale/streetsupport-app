@@ -13,6 +13,7 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { LocationProvider } from '../providers/location-provider';
 import { ApiProvider } from '../providers/api-provider';
 import { ContentProvider } from '../providers/content-provider';
+
 import { AccomodationPage } from '../pages/accomodation/accomodation';
 import { AboutPage } from '../pages/about/about';
 import { ContentPage } from '../pages/default-content/default-content';
@@ -28,7 +29,9 @@ import { OrganisationListPage } from '../pages/organisation-list/organisation-li
 import { OrganisationServicePage } from '../pages/organisation-service/organisation-service';
 import { TimetabledCategoryPage } from '../pages/timetabled-category/timetabled-category';
 import { TimetabledCategoryDetailPage } from '../pages/timetabled-category-detail/timetabled-category-detail';
+
 import { HeaderComponent } from '../components/header/header';
+
 import { SortByOrder } from '../pipes/sort-by-order';
 import { SortByAlpha } from '../pipes/sort-by-alpha';
 import { SortByDay } from '../pipes/sort-by-day';
@@ -88,10 +91,10 @@ import { SortByOpeningTime } from '../pipes/sort-by-opening-time';
     SplashScreen,
     InAppBrowser,
     Geolocation,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
     ApiProvider,
     ContentProvider,
     LocationProvider
   ]
 })
-export class AppModule {}
+export class AppModule { }
