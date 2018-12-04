@@ -1,4 +1,10 @@
 <ion-header></ion-header>
 <ion-content padding class="settings">
   <h1>Settings</h1>
+  <ion-list>
+    <ion-item (click)="presentLocationChange()">
+      <h2>Location Hub</h2>
+      <p>Your Local Hub: <strong>{{ currentCity.name }}</strong></p>
+    </ion-item>
+  </ion-list>
 </ion-content>

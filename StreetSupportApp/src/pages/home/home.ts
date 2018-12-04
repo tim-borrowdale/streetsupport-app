@@ -27,7 +27,9 @@ export class HomePage {
       try {
         this.locationProvider.getCurrentCity()
           .then((city) => {
-            this.currentLocation = city;
+            if(city !== null) {
+              this.currentLocation = city;
+            }
           })
       } catch (e) {
         console.log(e)
