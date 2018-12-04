@@ -16,6 +16,7 @@ import { ContentProvider } from '../providers/content-provider';
 
 import { AccomodationPage } from '../pages/accomodation/accomodation';
 import { AboutPage } from '../pages/about/about';
+import { SettingsPage } from '../pages/settings/settings';
 import { ContentPage } from '../pages/default-content/default-content';
 import { EmergencyPage } from '../pages/emergency/emergency';
 import { EmergencyDetailPage } from '../pages/emergency-detail/emergency-detail';
@@ -41,6 +42,7 @@ import { SortByOpeningTime } from '../pipes/sort-by-opening-time';
   declarations: [
     MyApp,
     AboutPage,
+    SettingsPage,
     AccomodationPage,
     HomePage,
     TabsPage,
@@ -71,6 +73,7 @@ import { SortByOpeningTime } from '../pipes/sort-by-opening-time';
   entryComponents: [
     MyApp,
     AboutPage,
+    SettingsPage,
     AccomodationPage,
     HomePage,
     TabsPage,

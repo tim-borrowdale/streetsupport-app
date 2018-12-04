@@ -1,8 +1,8 @@
 import { Component, Output, EventEmitter } from '@angular/core';
-import { ActionSheetController, AlertController, Loading, LoadingController } from 'ionic-angular';
+import { NavController, ActionSheetController, AlertController, Loading, LoadingController } from 'ionic-angular';
 import { ContentProvider } from '../../providers/content-provider';
 import { LocationProvider } from '../../providers/location-provider';
-
+import {SettingsPage} from '../../pages/settings/settings';
 
 @Component({
   selector: 'ion-header',
@@ -20,15 +20,17 @@ export class HeaderComponent {
     private contentProvider: ContentProvider,
     private alertCtrl: AlertController,
     private loadingCtrl: LoadingController,
-    private locationProvider: LocationProvider) {
+    private locationProvider: LocationProvider,
+    private nav: NavController) {
 
     this.presentLoading();
     this.contentProvider.findCities().then(cities => {
       this.cities = cities;
 
+      // TODO
       this.locationProvider.getCurrentCity().then(city => {
         if (city === null) {
-          this.presentActionSheet();
+          this.gotoSettings();
         } else {
           this.currentCity = city;
         }
@@ -44,13 +46,14 @@ export class HeaderComponent {
     this.loader.present();
   }
 
-  presentActionSheet() {
-    let actionSheet = this.actionSheetCtrl.create({
-      title: 'Choose a location',
-      buttons: this.getActionButtons()
-    });
+  gotoSettings() {
+    this.nav.push(SettingsPage)
+    // let actionSheet = this.actionSheetCtrl.create({
+    //   title: 'Choose a location',
+    //   buttons: this.getActionButtons()
+    // });
 
-    actionSheet.present();
+    // actionSheet.present();
   }
 
   alertCityUpdated(cityName, callback) {
