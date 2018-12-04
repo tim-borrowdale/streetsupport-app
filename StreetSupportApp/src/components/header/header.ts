@@ -30,10 +30,14 @@ export class HeaderComponent {
     this.nav.push(SettingsPage)
   }
 
-  get shouldDisplay() {
+  get shouldDisplaySettingsLink() {
     const activeNav = this.nav.getActive()
-    if(activeNav) {
+    if (activeNav) {
       return activeNav.component.name !== 'SettingsPage'
     }
+  }
+
+  get shouldShowSSNLogo() {
+    return this.nav.length() === 1
   }
 }
