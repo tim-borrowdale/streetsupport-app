@@ -49,7 +49,7 @@ export class SettingsPage {
   presentLocationChange(hasCityAlready: boolean = true) {
     const actionSheet = this.actionSheetCtrl.create({
       title: 'Please choose your Location Hub',
-      subTitle: 'The Street Support Network is made of many Hubs across the country who work in partnership in that area. Select your nearest one to view relevant content.',
+      subTitle: 'The Street Support Network is made up of many Hubs across the country. each Hub is a collection of various organisations, working in partnership to help people facing or experiencing homelessness. To view relevant information in your area, please select a Hub below:',
       buttons: this.getActionButtons(hasCityAlready)
     });
 
