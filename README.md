@@ -2,6 +2,15 @@
 
 Hybrid app for iOS and Android using Ionic Framework v3
 
+### Preinstall sanity check - Node, npm, nvm
+
+Open a console and type
+```node -v && npm -v``` to get your node and npm versions
+
+If your node version is 6.*, type ```nvm install 10```, 
+
+or download a version of nodejs (Long Term Support is recommended) from https://nodejs.org/en/download/
+
 ### Tech
 
 * [Ionic] - mobile hybrid app framework built on top of Cordova and AngularJS v5
@@ -11,14 +20,13 @@ Hybrid app for iOS and Android using Ionic Framework v3
 You need Ionic CLI installed globally (may have to use sudo):
 
 ```sh
-$ npm install -g ionic@beta
-$ npm install -g cordova
+$ npm install -g ionic cordova
 ```
 During development run the following to run the app in a browser from a local server
 
 ```sh
 $ git clone git@github.com:StreetSupport/streetsupport-app.git
-$ cd streetsupport-app
+$ cd streetsupport-app/StreetSupportApp
 $ npm install
 $ ionic serve
 ```
