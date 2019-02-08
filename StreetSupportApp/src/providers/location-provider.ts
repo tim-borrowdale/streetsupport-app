@@ -28,19 +28,21 @@ export class LocationProvider {
   }
 
   getUserLocation() {
-    return this.geolocation.getCurrentPosition({ timeout: 5000 }).then((resp) => {
-      return {
-        latitude: resp.coords.latitude,
-        longitude: resp.coords.longitude
-      };
-    }).catch((error) => {
-      let errorMessage = error.message;
+    return this.geolocation.getCurrentPosition({ timeout: 3000 })
+      .then((resp) => {
+        return {
+          latitude: resp.coords.latitude,
+          longitude: resp.coords.longitude
+        };
+      })
+      .catch((error) => {
+        let errorMessage = error.message;
 
-      if (error.code === 1) {
-        errorMessage = STRINGS.LOCATION_ERROR_MESSAGE;
-      }
+        if (error.code === 1) {
+          errorMessage = STRINGS.LOCATION_ERROR_MESSAGE;
+        }
 
-      return errorMessage;
-    })
+        return errorMessage;
+      })
   }
 }
