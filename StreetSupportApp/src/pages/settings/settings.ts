@@ -1,7 +1,8 @@
 import { Component, Output, EventEmitter } from '@angular/core';
-import { ActionSheetController, AlertController, Loading, LoadingController } from 'ionic-angular';
+import { NavController, ActionSheetController, AlertController, Loading, LoadingController } from 'ionic-angular';
 import { ContentProvider } from '../../providers/content-provider';
 import { LocationProvider } from '../../providers/location-provider';
+import { AuthProvider } from '../../providers/auth0-provider';
 
 @Component({
   selector: 'settings',
@@ -14,18 +15,20 @@ export class SettingsPage {
   @Output() didChangeLocation = new EventEmitter<string>();
 
   constructor(
+    private nav: NavController,
     private actionSheetCtrl: ActionSheetController,
     private contentProvider: ContentProvider,
     private alertCtrl: AlertController,
     private loadingCtrl: LoadingController,
-    private locationProvider: LocationProvider) {
+    private locationProvider: LocationProvider,
+    public auth: AuthProvider) {
 
     this.presentLoading();
 
     this.contentProvider.findCities()
       .then(cities => {
         this.cities = cities;
-      
+
         this.locationProvider.getCurrentCity()
           .then(city => {
             if (city === null) {
@@ -54,6 +57,18 @@ export class SettingsPage {
     });
 
     actionSheet.present();
+  }
+
+  logout() {
+    this.auth.logout()
+    let alert = this.alertCtrl.create({
+      title: 'Logged out',
+      subTitle: `You have been logged out of your account`,
+      buttons: [{
+        text: 'OK'
+      }]
+    });
+    alert.present();
   }
 
   private getActionButtons(hasCityAlready: boolean): string[] {

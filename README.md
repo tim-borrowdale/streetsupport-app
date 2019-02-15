@@ -37,10 +37,10 @@ $ ionic cordova platform add [platform]
 $ ionic cordova emulate [platform]
 ```
 
-To run on  a device run
+To run on a device run
 
 ```sh
-$ ionic run [platform]
+$ ionic cordova run [platform]
 ```
 
 ### To deploy:

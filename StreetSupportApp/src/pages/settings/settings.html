@@ -6,5 +6,13 @@
       <h2>Location Hub</h2>
       <p>Your Local Hub: <strong>{{ currentCity.name }}</strong></p>
     </ion-item>
+    <ion-item *ngIf="!auth.loggedIn" (click)="auth.login()">
+      <h2>Login</h2>
+      <p>Log into your Admin account</p>
+    </ion-item>
+    <ion-item *ngIf="auth.loggedIn" (click)="logout()">
+      <h2>Logout</h2>
+      <p>Log out of your Admin account</p>
+    </ion-item>
   </ion-list>
 </ion-content>

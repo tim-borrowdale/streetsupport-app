@@ -1,0 +1,13 @@
+<ion-header></ion-header>
+<ion-content class="neeeds-list">
+  <div class="section-header">
+    <h1 class="section-header__title">My Needs</h1>
+    <p class="section-header__copy">To manage your needs, please visit: <a href="https://admin.streetsupport.net">admin.streetsupport.net</a></p>
+  </div>
+  <ion-list>
+    <ion-item *ngFor="let need of needs" (click)="itemTapped(event, provider)">
+      <span [innerHTML]="need.description"></span>
+      <ion-icon name="arrow-forward" item-right></ion-icon>
+    </ion-item>
+  </ion-list>
+</ion-content>

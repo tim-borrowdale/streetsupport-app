@@ -13,11 +13,14 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { LocationProvider } from '../providers/location-provider';
 import { ApiProvider } from '../providers/api-provider';
 import { ContentProvider } from '../providers/content-provider';
+import { NeedsProvider } from '../providers/resources/needs-provider';
+import { AuthProvider } from '../providers/auth0-provider';
 
 import { AccomodationPage } from '../pages/accomodation/accomodation';
 import { AboutPage } from '../pages/about/about';
 import { SettingsPage } from '../pages/settings/settings';
 import { ContentPage } from '../pages/default-content/default-content';
+import { NeedsPage } from '../pages/needs/needs';
 import { EmergencyPage } from '../pages/emergency/emergency';
 import { EmergencyDetailPage } from '../pages/emergency-detail/emergency-detail';
 import { HomePage } from '../pages/home/home';
@@ -48,6 +51,7 @@ import { SortByOpeningTime } from '../pipes/sort-by-opening-time';
     TabsPage,
     ContentPage,
     EmergencyPage,
+    NeedsPage,
     EmergencyDetailPage,
     FindHelpPage,
     HelpCategoryPage,
@@ -79,6 +83,7 @@ import { SortByOpeningTime } from '../pipes/sort-by-opening-time';
     TabsPage,
     ContentPage,
     EmergencyPage,
+    NeedsPage,
     EmergencyDetailPage,
     FindHelpPage,
     HelpCategoryPage,
@@ -97,7 +102,9 @@ import { SortByOpeningTime } from '../pipes/sort-by-opening-time';
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     ApiProvider,
     ContentProvider,
-    LocationProvider
+    NeedsProvider,
+    LocationProvider,
+    AuthProvider
   ]
 })
 export class AppModule { }

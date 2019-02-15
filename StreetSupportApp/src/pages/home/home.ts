@@ -1,7 +1,11 @@
 import { Component } from '@angular/core';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { NavController } from 'ionic-angular';
+
 import { EmergencyPage } from '../emergency/emergency';
+import { NeedsPage } from '../needs/needs';
+
+import { AuthProvider } from '../../providers/auth0-provider';
 import { ContentProvider } from '../../providers/content-provider';
 import { LocationProvider } from '../../providers/location-provider';
 
@@ -17,8 +21,8 @@ export class HomePage {
     public nav: NavController,
     private contentProvider: ContentProvider,
     public locationProvider: LocationProvider,
-    private iab: InAppBrowser) {
-  }
+    private iab: InAppBrowser,
+    public auth: AuthProvider) { }
 
   ionViewWillEnter() {
     this.contentProvider.findCities().then(cities => {
@@ -27,7 +31,7 @@ export class HomePage {
       try {
         this.locationProvider.getCurrentCity()
           .then((city) => {
-            if(city !== null) {
+            if (city !== null) {
               this.currentLocation = city;
             }
           })
@@ -51,5 +55,9 @@ export class HomePage {
 
   servicesItemTapped() {
     this.nav.parent.select(1);
+  }
+
+  needResponsesTapped() {
+    this.nav.push(NeedsPage);
   }
 }
