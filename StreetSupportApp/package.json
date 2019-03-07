@@ -1,6 +1,6 @@
 {
   "name": "StreetSupportApp",
-  "description": "Supporting homeless people together",
+  "description": "Working Together to End Homelessness",
   "private": true,
   "scripts": {
     "clean": "ionic-app-scripts clean",
