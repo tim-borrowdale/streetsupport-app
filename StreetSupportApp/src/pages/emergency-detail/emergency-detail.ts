@@ -22,6 +22,6 @@ export class EmergencyDetailPage {
   }
 
   showWebPage() {
-    let browser = this.iab.create(this.url, '_system', '');
+    this.iab.create(this.url, '_system', '');
   }
 }

@@ -1,5 +1,5 @@
 import { Component, Output, EventEmitter } from '@angular/core';
-import { NavController, ActionSheetController, AlertController, Loading, LoadingController } from 'ionic-angular';
+import { ActionSheetController, AlertController, Loading, LoadingController } from 'ionic-angular';
 import { ContentProvider } from '../../providers/content-provider';
 import { LocationProvider } from '../../providers/location-provider';
 import { AuthProvider } from '../../providers/auth0-provider';
@@ -15,7 +15,6 @@ export class SettingsPage {
   @Output() didChangeLocation = new EventEmitter<string>();
 
   constructor(
-    private nav: NavController,
     private actionSheetCtrl: ActionSheetController,
     private contentProvider: ContentProvider,
     private alertCtrl: AlertController,

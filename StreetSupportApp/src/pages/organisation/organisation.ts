@@ -58,17 +58,17 @@ export class OrganisationPage {
         },{
           text: 'Website',
           handler: () => {
-            const browser = this.iab.create(this.organisation.website, '_system');
+            this.iab.create(this.organisation.website, '_system');
           }
         },{
           text: 'Facebook',
           handler: () => {
-            const browser = this.iab.create(this.organisation.facebook, '_system', 'location=no');
+            this.iab.create(this.organisation.facebook, '_system', 'location=no');
           }
         },{
           text: 'Twitter',
           handler: () => {
-            const browser = this.iab.create(this.organisation.twitter, '_system', 'location=no');
+            this.iab.create(this.organisation.twitter, '_system', 'location=no');
           }
         },{
           text: 'Cancel',

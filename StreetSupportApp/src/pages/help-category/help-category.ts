@@ -1,10 +1,8 @@
 import {Component} from "@angular/core";
-import {Storage} from '@ionic/storage';
 import {NavController, NavParams, Loading, LoadingController, AlertController} from 'ionic-angular';
 import {ContentProvider} from '../../providers/content-provider';
 import {LocationProvider} from '../../providers/location-provider';
 import {HelpCategoryDetailPage} from '../help-category-detail/help-category-detail';
-import parse from 'marked';
 
 @Component({
   templateUrl: 'help-category.html'
