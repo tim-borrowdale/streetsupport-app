@@ -23,12 +23,11 @@ export class ApiProvider {
   }
 
   get(url): Promise<any> {
-    console.log(this.auth)
     const options = this.auth.loggedIn
       ? { headers: this.getAuthHeaders() }
       : null
-    console.log(options)
-    return this.http.get(`${API_BASE_URL}${url}`, options )
+
+    return this.http.get(`${API_BASE_URL}${url}`, options)
       .toPromise()
       .then(this.mapResponse)
       .catch(this.handleError);
@@ -43,9 +42,9 @@ export class ApiProvider {
     return Promise.reject(error.message || error);
   }
 
-  getAuthHeaders():Headers  {
+  getAuthHeaders(): Headers {
     const headers = new Headers()
-    headers.append('Authorization', `Bearer ${this.auth.idToken}`)
+    headers.append('Authorization', `Bearer ${this.auth.accessToken}`)
     return headers
   }
 }

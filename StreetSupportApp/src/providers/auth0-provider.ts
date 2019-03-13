@@ -33,18 +33,19 @@ export class AuthProvider {
   login() {
     this.loading = true;
     const options = {
-      scope: 'openid profile offline_access'
+      scope: 'openid profile offline_access',
+      audience: AUTH_CONFIG.audience
     };
     // Authorize login request with Auth0: open login page and get auth results
     this.Client.authorize(options, (err, authResult) => {
       if (err) {
         throw err;
       }
-      console.log(authResult)
 
       // Set Access Token
       this.storage.set('access_token', authResult.accessToken);
       this.accessToken = authResult.accessToken;
+      this.storage.set('id_token', authResult.idToken);
       this.idToken = authResult.idToken;
       // Set Access Token expiration
       const expiresAt = JSON.stringify((authResult.expiresIn * 1000) + new Date().getTime());
