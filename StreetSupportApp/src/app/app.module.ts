@@ -21,6 +21,7 @@ import { AboutPage } from '../pages/about/about';
 import { SettingsPage } from '../pages/settings/settings';
 import { ContentPage } from '../pages/default-content/default-content';
 import { NeedsPage } from '../pages/needs/needs';
+import { NeedResponsePage } from '../pages/need-responses/need-responses';
 import { EmergencyPage } from '../pages/emergency/emergency';
 import { EmergencyDetailPage } from '../pages/emergency-detail/emergency-detail';
 import { HomePage } from '../pages/home/home';
@@ -52,6 +53,7 @@ import { SortByOpeningTime } from '../pipes/sort-by-opening-time';
     ContentPage,
     EmergencyPage,
     NeedsPage,
+    NeedResponsePage,
     EmergencyDetailPage,
     FindHelpPage,
     HelpCategoryPage,
@@ -84,6 +86,7 @@ import { SortByOpeningTime } from '../pipes/sort-by-opening-time';
     ContentPage,
     EmergencyPage,
     NeedsPage,
+    NeedResponsePage,
     EmergencyDetailPage,
     FindHelpPage,
     HelpCategoryPage,
