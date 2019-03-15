@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
-import { Loading, NavController, LoadingController, NavParams } from "ionic-angular";
+import { Loading, NavParams } from "ionic-angular";
+import { InAppBrowser } from "@ionic-native/in-app-browser";
 
 @Component({
   templateUrl: 'need-responses.html'
@@ -10,15 +11,9 @@ export class NeedResponsePage {
   public loader: Loading;
 
   constructor(
-    public navParams: NavParams,
-    public nav: NavController,
+    private navParams: NavParams,
+    private iab: InAppBrowser
   ) {
     this.need = navParams.get('need');
-  }
-
-  ionViewWillEnter() {
-  }
-
-  loadNeeds() {
   }
 }

@@ -53,6 +53,12 @@ export class NeedsPage {
         .map((n) => {
           const responses = this.responses
             .filter((r) => r.needId === n.id)
+            .map((r) => {
+              return {
+                ...r,
+                mailLink: `mailto:${r.email}?subject=Thanks for your offer to help with '${n.description}'`
+              }
+            })
           return {
             ...n,
             responses: responses,
