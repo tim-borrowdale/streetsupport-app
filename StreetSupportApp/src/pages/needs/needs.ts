@@ -56,6 +56,7 @@ export class NeedsPage {
             .map((r) => {
               return {
                 ...r,
+                formattedCreationDate: new Date(r.creationDate).toLocaleDateString(),
                 mailLink: `mailto:${r.email}?subject=Thanks for your offer to help with '${n.description}'`
               }
             })

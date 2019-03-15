@@ -7,7 +7,12 @@
   <p class="content__body">Tap a Response to email the donor.</p>
   <ion-list *ngFor="let res of need.responses">
     <ion-card class="card">
-      <a class="card__link" [href]="res.mailLink" [innerHTML]="res.message"></a>
+      <ion-card-header>
+        <ion-card-title class="card__title card__title--small" [innerHTML]="res.formattedCreationDate"></ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <a class="card__link" [href]="res.mailLink" [innerHTML]="res.message"></a>
+      </ion-card-content>
     </ion-card>
   </ion-list>
 </ion-content>

@@ -272,6 +272,12 @@
     padding: 10px;
   }
 
+  .card__title {
+    &--small {
+      font-size: 16px
+    }
+  }
+
   .card__link {
     text-decoration: none;
   }
