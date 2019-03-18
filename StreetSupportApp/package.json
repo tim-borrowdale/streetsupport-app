@@ -53,6 +53,7 @@
     "@ionic/app-scripts": "^3.2.0",
     "@types/expect": "^1.20.3",
     "@types/mocha": "^5.2.5",
+    "htmlencode": "0.0.4",
     "mocha": "^5.2.0",
     "ts-mocha": "^2.0.0",
     "typescript": "2.4.2"
@@ -103,7 +104,7 @@
       "cordova-plugin-customurlscheme": {
         "URL_SCHEME": "net.streetsupport.findhelpapp",
         "ANDROID_SCHEME": "net.streetsupport.findhelpapp",
-        "ANDROID_HOST": "ssn-auth-dev.eu.auth0.com",
+        "ANDROID_HOST": "streetsupport.eu.auth0.com",
         "ANDROID_PATHPREFIX": "/cordova/net.streetsupport.findhelpapp/callback"
       }
     },

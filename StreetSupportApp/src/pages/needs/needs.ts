@@ -3,6 +3,7 @@ import { Loading, NavController, LoadingController } from "ionic-angular";
 import { NeedsProvider } from "../../providers/resources/needs-provider";
 import { NeedResponsePage } from '../need-responses/need-responses';
 
+import { htmlDecode } from 'htmlencode'
 @Component({
   templateUrl: 'needs.html'
 })
@@ -57,7 +58,7 @@ export class NeedsPage {
               return {
                 ...r,
                 formattedCreationDate: new Date(r.creationDate).toLocaleDateString(),
-                mailLink: `mailto:${r.email}?subject=Thanks for your offer to help with '${n.description}'`
+                mailLink: `mailto:${r.email}?subject=Thanks for your offer to help with "${htmlDecode(n.description)}"`
               }
             })
           return {
