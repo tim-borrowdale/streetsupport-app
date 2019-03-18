@@ -3,8 +3,8 @@
   "description": "Supporting homeless people together",
   "private": true,
   "scripts": {
-    "run:android": "ionic cordova run android",
-    "run:ios": "ionic cordova run ios",
+    "run:a": "ionic cordova run android",
+    "run:i": "ionic cordova run ios",
     "clean": "ionic-app-scripts clean",
     "build": "ionic-app-scripts build",
     "lint": "ionic-app-scripts lint",
