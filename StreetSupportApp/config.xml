@@ -81,7 +81,7 @@
     <plugin name="cordova-plugin-customurlscheme" spec="4.3.0">
         <variable name="URL_SCHEME" value="net.streetsupport.findhelpapp" />
         <variable name="ANDROID_SCHEME" value="net.streetsupport.findhelpapp" />
-        <variable name="ANDROID_HOST" value="ssn-auth-dev.eu.auth0.com" />
+        <variable name="ANDROID_HOST" value="streetsupport.eu.auth0.com" />
         <variable name="ANDROID_PATHPREFIX" value="/cordova/net.streetsupport.findhelpapp/callback" />
     </plugin>
     <engine name="android" spec="^7.1.2" />

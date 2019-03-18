@@ -1,4 +1,4 @@
-export let API_BASE_URL = 'https://ssn-api-dev.azurewebsites.net';
+export let API_BASE_URL = 'https://ssn-api-prod.azurewebsites.net';
 export let STRINGS = {
   LOCATION_ERROR_MESSAGE: 'To use location services for this app they must be enabled in settings.',
   REGISTER_HOMELESS_COPY: '<h1>Register as Homeless</h1><p>If you are at risk of becoming homeless, or have recently been made homeless, it is important to tell your local council as soon as possible. They will make an assessment on what services you can access, depending on how vulnerable you are and whether you are considered priority need.</p>',

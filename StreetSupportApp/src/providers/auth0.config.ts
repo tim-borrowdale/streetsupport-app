@@ -1,9 +1,9 @@
 export const AUTH_CONFIG = {
   // Needed for Auth0 (capitalization: ID):
-  clientID: 'cJ7emYVnOVAIqNfsOxIiFiUTRwpd5km4',
+  clientID: 'bB8nUyv1Xn9SE1zGyRutavkjbaoYS11U',
   // Needed for Auth0Cordova (capitalization: Id):
-  clientId: 'cJ7emYVnOVAIqNfsOxIiFiUTRwpd5km4',
-  domain: 'ssn-auth-dev.eu.auth0.com', // e.g., you.auth0.com
+  clientId: 'bB8nUyv1Xn9SE1zGyRutavkjbaoYS11U',
+  domain: 'streetsupport.eu.auth0.com', // e.g., you.auth0.com
   packageIdentifier: 'net.streetsupport.findhelpapp', // config.xml widget ID
-  audience: 'ssn-api-dev'
+  audience: 'ssn-api-prod'
 };
