@@ -77,6 +77,8 @@ export class AuthProvider {
   }
 
   get isOrgAdmin() {
-    return this.user && this.user['https://streetsupport.net/roles'].includes('OrgAdmin')
+    return this.loggedIn &&
+           this.user &&
+           this.user['https://streetsupport.net/roles'].includes('OrgAdmin')
   }
 }
